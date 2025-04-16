@@ -1,0 +1,18 @@
+.input_resize {
+  resize: none;
+}
+.margin-right10 {
+  margin-right: 10px;
+}
+.add_more_btn {
+  margin: 28px 0 0 -10px;
+}
+.displayNone {
+  display: none;
+}
+
+.trix-button--icon-link,
+.trix-button--icon-attach,
+.trix-button--icon-code {
+  display: none;
+}

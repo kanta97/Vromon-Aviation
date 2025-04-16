@@ -1,0 +1,6 @@
+{
+  "name": "FailedHotel",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./FailedHotel.js"
+}

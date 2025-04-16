@@ -1,0 +1,133 @@
+/*!
+ * Start Bootstrap - Simple Sidebar (https://startbootstrap.com/templates/simple-sidebar)
+ * Copyright 2013-2020 Start Bootstrap
+ * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-simple-sidebar/blob/master/LICENSE)
+ */
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+#wrapper {
+  overflow-x: hidden;
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem;
+  -webkit-transition: margin 0.25s ease-out;
+  -moz-transition: margin 0.25s ease-out;
+  -o-transition: margin 0.25s ease-out;
+  transition: margin 0.25s ease-out;
+}
+
+#sidebar-wrapper .sidebar-heading {
+  padding: 0.875rem 1.25rem;
+  font-size: 1.2rem;
+}
+
+#sidebar-wrapper .list-group {
+  width: 15rem;
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0;
+}
+
+@media (min-width: 768px) {
+  #sidebar-wrapper {
+    margin-left: 0;
+  }
+
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem;
+  }
+}
+
+.stickyTable thead th {
+  position: sticky;
+  top: 0;
+  background-color: #f8f9fa;
+  border-top: none;
+  z-index: 100;
+}
+
+.availabilities_page table,
+th,
+td:first-child {
+  border-collapse: collapse;
+  max-width: 155px;
+  position: sticky !important;
+  left: 0;
+  background-color: #fff;
+  z-index: 10;
+}
+.availabilities_page .table td,
+.table th {
+  padding: 0.75rem;
+  vertical-align: top;
+  border-top: unset;
+}
+.availabilities_page .form-alternet {
+  width: unset !important;
+  max-width: 150px;
+  color: #495057;
+  background-color: #fcbaba;
+  border: unset;
+  display: block;
+  width: unset;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+
+  background-clip: padding-box;
+
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.form-alternet12 {
+  display: block;
+  width: 100%;
+  height: calc(1.5em + 0.75rem + 2px);
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  background-clip: padding-box;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+.scrolling-modal {
+  height: 69vh;
+  overflow-y: scroll;
+}
+
+.not-allowed {
+  pointer-events: auto !important;
+  cursor: not-allowed !important;
+}
+
+@media (max-width: 991.98px) {
+  .w-50 {
+    width: 100% !important;
+  }
+}
+
+.scrolling-div-y {
+  height: 82vh;
+  overflow-y: scroll;
+}

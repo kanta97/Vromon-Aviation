@@ -1,0 +1,91 @@
+<div class="container-fluid mt-3" ng-controller="reportController">
+  <div class="row" ng-if="reportLoading==1;">
+    <div class="col-md-12 text-center">
+      <img class="mb-3" height="60px;" src="assets/loading.gif" />
+    </div>
+  </div>
+
+  <div class="row mt-2" ng-if="reportLoading==0">
+    <div class="col-md-12">
+      <div class="d-flex justify-content-between mb-3 mt-3">
+        <div class="date-filter d-flex justify-content-center">
+          <div class="form-date mr-3">
+            <input
+              type="date"
+              name="input"
+              id="fromDate"
+              ng-change="formDatePick()"
+              ng-model="formDate.value"
+              class="form-control"
+            />
+          </div>
+
+          <div class="to-date">
+            <input
+              type="date"
+              name="input"
+              id="toDate"
+              ng-change="toDatePick()"
+              ng-model="toDate.value"
+              class="form-control"
+            />
+          </div>
+          <div class="to-date">
+            <button ng-click="applyFilter()" class="btn btn-success ml-2">
+              Apply
+            </button>
+          </div>
+        </div>
+
+        <div class="export-btn">
+          <button
+            type="button"
+            class="btn btn-success"
+            ng-click="exportedData()"
+          >
+            <i class="fas fa-download"></i>
+          </button>
+        </div>
+      </div>
+
+      <div
+        ng-if="reportLoading==0 && allBookingList.length!=0;"
+        class="table-responsive stickyTable"
+        style="height: 74vh"
+      >
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Report ID</th>
+              <th scope="col">Room Name</th>
+              <th scope="col">Total Amount (BDT)</th>
+              <th scope="col">Total Days</th>
+              <th scope="col">Total Room</th>
+              <th scope="col">Check In Date</th>
+              <th scope="col">Check Out Date</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="report in allBookingList">
+              <td>{{report.id}}</td>
+              <td>{{report.roomName}}</td>
+              <td>{{report.totalAmount | number}}</td>
+              <td>{{report.totalDays}}</td>
+              <td>{{report.totalRoom}}</td>
+              <td>{{report.checkInDate | date : "dd MMM yyyy"}}</td>
+              <td>{{report.checkOutDate | date : "dd MMM yyyy"}}</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <div ng-if="reportLoading==0 && allBookingList.length==0" class="row mt-2">
+    <div class="col-md-12 text-center">
+      <h5>No Data</h5>
+    </div>
+  </div>
+</div>

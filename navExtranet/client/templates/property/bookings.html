@@ -1,0 +1,267 @@
+<div class="container-fluid mt-4" ng-controller="bookingController">
+  <div class="row">
+    <div class="col-md-12">
+      <form>
+        <div class="form-group">
+          <input
+            ng-keyup="getAllBookingList();"
+            ng-model="searchText"
+            type="text"
+            class="form-control"
+            id="searchText"
+            aria-describedby="searchText"
+            placeholder="Search Booking by Room Name"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row" ng-if="bookingLoading==1;">
+    <div class="col-md-12 text-center">
+      <img class="mb-3" height="60px;" src="assets/loading.gif" />
+    </div>
+  </div>
+
+  <div ng-if="bookingLoading==0 && allBookingList.length==0" class="row mt-2">
+    <div class="col-md-12 text-center">
+      <h5>No Data</h5>
+    </div>
+  </div>
+
+  <div class="row mt-2" ng-if="bookingLoading==0 && allBookingList.length!=0;">
+    <div class="col-md-12">
+      <div class="table-responsive stickyTable" style="height: 74vh">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Booking ID</th>
+              <!-- <th scope="col">Property ID</th> -->
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Room Name</th>
+              <th scope="col">Total Amount</th>
+              <th scope="col">Total Days</th>
+              <th scope="col">Total Room</th>
+              <th scope="col">Check In Date</th>
+              <th scope="col">Check Out Date</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="booking in allBookingList">
+              <td>{{booking.id}}</td>
+              <!-- <td>{{booking.propertyId}}</td> -->
+              <td>{{booking.userName}}</td>
+              <td>{{booking.userId}}</td>
+              <td>{{booking.roomName}}</td>
+              <td>{{booking.totalAmount | number}}</td>
+              <td>{{booking.totalDays}}</td>
+              <td>{{booking.totalRoom}}</td>
+              <td>{{booking.checkInDate | date : "dd MMM yyyy"}}</td>
+              <td>{{booking.checkOutDate | date : "dd MMM yyyy"}}</td>
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <!-- <div class="modal fade" id="supplierModal" tabindex="-1" role="dialog" aria-labelledby="supplierModal"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="supplierModalTitle">{{supplierModalTitle}}</h5>
+                    <button ng-click="clearModal()" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body" style="height: 69vh; overflow-y: scroll;">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="inputName">Name</label>
+                                        <input ng-keyup="getRawMatSuggestion();" list="rawMatSuggestionList"
+                                            ng-model="rawMaterialName"
+                                            style="pointer-events: {{supplierModalTitle=='Edit Raw Material'?'none':''}};"
+                                            type="text" class="form-control" id="rawMaterialName"
+                                            aria-describedby="rawMaterialName" placeholder="Enter raw material name">
+                                        <datalist id="rawMatSuggestionList">
+                                            <option value="{{data.name}}" ng-repeat="data in allRawMatSuggs">
+                                        </datalist>
+                                        <small ng-if="nameEmpty==1" style="color: #DC3545!important;" id="emailHelp"
+                                            class="form-text text-muted">Name
+                                            can't be empty</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="measurementUnit">Unit</label>
+                                        <select
+                                            style="pointer-events: {{supplierModalTitle=='Edit Raw Material'?'none':''}};"
+                                            class="form-control" ng-model="measurementUnit">
+                                            <option value="">Select</option>
+                                            <option value="{{unitData.name}} ({{unitData.unit}})"
+                                                ng-repeat="unitData in allUnits">
+                                                {{unitData.name}}
+                                                ({{unitData.unit}})</option>
+                                        </select>
+                                        <small ng-if="measurementUnitEmpty==1" style="color: #DC3545!important;"
+                                            id="emailHelp" class="form-text text-muted">Unit
+                                            can't be empty</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="inputContactNo">Quantity</label>
+                                        <input ng-model="amount"
+                                            style="pointer-events: {{supplierModalTitle=='Edit Raw Material'?'none':''}};"
+                                            type="number" class="form-control" id="amount" aria-describedby="amount"
+                                            placeholder="Enter quantity">
+                                        <small ng-if="amountEmpty==1" style="color: #DC3545!important;" id="emailHelp"
+                                            class="form-text text-muted">Quantity can't be
+                                            empty</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="selectedSupplierId">Supplier</label>
+                                        <select class="form-control" ng-model="selectedSupplierId">
+                                            <option value="">Select</option>
+                                            <option value="{{supplierData.id}}"
+                                                ng-repeat="supplierData in allSuppliers">
+                                                {{supplierData.name}} - {{supplierData.contactNo}}
+                                            </option>
+                                        </select>
+                                        <small ng-if="supplierEmpty==1" style="color: #DC3545!important;" id="emailHelp"
+                                            class="form-text text-muted">Supplier
+                                            can't be empty</small>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="invoiceNumber">Invoice Number</label>
+                                        <input ng-model="invoiceNumber" type="text" class="form-control"
+                                            id="invoiceNumber" aria-describedby="invoiceNumber"
+                                            placeholder="Enter invoice number">
+                                        <small ng-if="invoiceNumberEmpty==1" style="color: #DC3545!important;"
+                                            id="emailHelp" class="form-text text-muted">Invoice Number can't be
+                                            empty</small>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button ng-click="clearModal()" type="button" class="btn btn-secondary"
+                        data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary"
+                        ng-click="addEditSupplier('addEdit', '')">{{supplierModalBtnTxt}}</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+  <!-- Modal -->
+  <!-- <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle" style="color: #FFC107;">Warning</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                Do you want to delete?
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-danger" ng-click="deleteSupplier('delete', '')">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+  <!-- Modal -->
+  <!-- <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Filter</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="fromDate">From</label>
+                                        <input ng-change="doFilter('apply')" ng-model="fromDate" type="date"
+                                            class="form-control" id="fromDate" aria-describedby="nameHelp"
+                                            placeholder="Enter From date">
+                                        <small ng-if="fromDateEmpty==1" style="color: #DC3545!important;" id="emailHelp"
+                                            class="form-text text-muted">From date
+                                            can't be empty</small>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="toDate">To</label>
+                                        <input ng-change="doFilter('apply')" ng-model="toDate" type="date"
+                                            class="form-control" id="toDate" aria-describedby="nameHelp"
+                                            placeholder="Enter To date">
+                                        <small ng-if="toDateEmpty==1" style="color: #DC3545!important;" id="emailHelp"
+                                            class="form-text text-muted">To date
+                                            can't be empty</small>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="invoiceNumber">Raw Material</label>
+                                    <select class="form-control" ng-model="selectedRawMatForFilter">
+                                        <option value="">All</option>
+                                        <option value="{{data.name}}" ng-repeat="data in allTotalStockList">
+                                            {{data.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label for="invoiceNumber">Supplier</label>
+                                    <select class="form-control" ng-model="selectedSupplierForFilter">
+                                        <option value="">All</option>
+                                        <option value="{{data.id}}" ng-repeat="data in allSuppliers">
+                                            {{data.name}}
+                                        </option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" ng-click="doFilter('finalApply')">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>

@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "nav_all",
+    "password": "Qwertyuiop@1233",
+    "database": "dev_auth_db",
+    "port": 33173,
+    "host": "148.72.212.173",
+    "dialect": "mysql"
+  },
+  "test": {
+    "username": "root",
+    "password": "",
+    "database": "navigator_auth_db",
+    "port": 3306,
+    "host": "localhost",
+    "dialect": "mysql"
+  },
+  "production": {
+    "username": "prod_author",
+    "password": "pr0d@@uth0r@2019",
+    "database": "prod_auth_db",
+    "port": 33173,
+    "host": "148.72.212.173",
+    "dialect": "mysql"
+  }
+}

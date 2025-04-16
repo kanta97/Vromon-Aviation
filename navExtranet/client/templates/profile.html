@@ -1,0 +1,12 @@
+<div class="container-fluid mt-3" ng-controller="profileController">
+    <div class="row">
+        <div class="col-md-12">
+            <p><b>Name:</b> {{sessionInfo.sessionInfo.name}}</p>
+            <p><b>Email:</b> {{sessionInfo.sessionInfo.email}}</p>
+            <!-- <p><b>Gender:</b> {{sessionInfo.sessionInfo.gender}}</p> -->
+            <!-- <p><b>Contact Number:</b> {{sessionInfo.sessionInfo.phoneNo}}</p> -->
+            <p class="text-capitalize"><b>Role:</b> {{sessionInfo.sessionInfo.userType}}</p>
+            <p><b>Joining Date:</b> {{sessionInfo.sessionInfo.createDate | date : "dd MMM yyyy hh:mm:ss a"}}</p>
+        </div>
+    </div>
+</div>

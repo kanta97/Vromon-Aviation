@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Navigator Tourism</title>
+    <link rel="icon" href="" type="image/png" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <base href="/" />
+
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://navigatortourism.com/assets/img/fav.ico"
+    />
+    <!--Material Bootstrap CSS -->
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    />
+    <!-- Bootstrap core CSS -->
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker3.min.css"
+      rel="stylesheet"
+    />
+
+    <link
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
+      rel="stylesheet"
+    />
+
+    <!-- Material Design Bootstrap -->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet"> -->
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css"
+    />
+
+    <!--excel export modules-->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/alasql/0.4.9/alasql.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.13.4/xlsx.core.min.js"></script>
+
+    <!-- JQuery -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+    ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"
+      type="text/javascript"
+    ></script>
+
+    <!-- Bootstrap tooltips -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"
+    ></script>
+    <!-- Bootstrap core JavaScript -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"
+    ></script>
+    <!-- MDB core JavaScript -->
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script> -->
+
+    <!-- angularjs -->
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"
+    ></script>
+
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- angularjs routing -->
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-route.js"
+    ></script>
+
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"
+    ></script>
+
+    <!-- angularjs controllers -->
+    <!-- common -->
+    <script type="text/javascript" src="./js/controllers/root.ctrl.js"></script>
+    <script type="text/javascript" src="./js/route.js"></script>
+    <script
+      type="text/javascript"
+      src="./js/controllers/dashboard.ctrl.js"
+    ></script>
+    <!-- common end -->
+
+    <!-- properties -->
+    <script
+      type="text/javascript"
+      src="./js/controllers/property/rooms.ctrl.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./js/controllers/property/properties.ctrl.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./js/controllers/property/bookings.ctrl.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./js/controllers/property/report.ctrl.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./js/controllers/property/rates.ctrl.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./js/controllers/property/availability.ctrl.js"
+    ></script>
+
+    <!-- properties end -->
+
+    <!-- transports -->
+    <script
+      type="text/javascript"
+      src="./js/controllers/transport/transports.ctrl.js"
+    ></script>
+    <script
+      type="text/javascript"
+      src="./js/controllers/transport/bookings.ctrl.js"
+    ></script>
+    <!-- transports end-->
+
+    <!-- common -->
+    <script
+      type="text/javascript"
+      src="./js/controllers/profile.ctrl.js"
+    ></script>
+    <!-- common end-->
+
+    <!-- custom style -->
+    <link href="./css/style.css" rel="stylesheet" />
+    <!-- custom style end -->
+  </head>
+
+  <body class="" ng-app="navExtranetApp" ng-controller="rootController">
+    <div class="d-flex" id="wrapper">
+      <!-- Sidebar -->
+      <div class="bg-light border-right" id="sidebar-wrapper">
+        <div class="sidebar-heading text-center">
+          Navigator
+          {{sessionInfo.sessionInfo.userType=='hotelPartner'?'Extranet':sessionInfo.sessionInfo.userType=='transportPartner'?'Transports':'Admin
+          Portal'}}
+        </div>
+        <div class="list-group list-group-flush">
+          <!-- common -->
+          <a
+            ng-show="sessionInfo.sessionInfo.userType=='hotelPartner'"
+            style="background-color: {{selectedNav=='dashboard' || selectedNav=='admin-panel.html'?'#DAE0E5!important':''}};"
+            ng-click="selectedNav='dashboard'"
+            href="/admin-panel.html"
+            class="list-group-item list-group-item-action bg-light"
+            ><i class="fas fa-tachometer-alt"></i> Dashboard</a
+          >
+          <!-- common end -->
+
+          <!-- properties -->
+          <a
+            ng-show="sessionInfo.sessionInfo.userType=='hotelPartner'"
+            style="background-color: {{selectedNav=='property'?'#DAE0E5!important':''}};"
+            ng-click="selectedNav='property'"
+            href="/admin-panel.html#!/properties"
+            class="list-group-item list-group-item-action bg-light"
+            ><i class="fas fa-home"></i> Property</a
+          >
+          <a
+            ng-show="sessionInfo.sessionInfo.userType=='hotelPartner'"
+            style="background-color: {{selectedNav=='rooms'?'#DAE0E5!important':''}};"
+            ng-click="selectedNav='rooms'"
+            href="/admin-panel.html#!/rooms"
+            class="list-group-item list-group-item-action bg-light"
+            ><i class="fas fa-building"></i> Room</a
+          >
+          <!-- <a
+            ng-show="sessionInfo.sessionInfo.userType=='hotelPartner'"
+            style="background-color: {{selectedNav=='rates'?'#DAE0E5!important':''}};"
+            ng-click="selectedNav='rates'"
+            href="/admin-panel.html#!/rates"
+            class="list-group-item list-group-item-action bg-light"
+            ><i class="fas fa-tag"></i> Rates/Offers</a
+          > -->
+          <a
+            ng-show="sessionInfo.sessionInfo.userType=='hotelPartner'"
+            style="background-color: {{selectedNav=='availability'?'#DAE0E5!important':''}};"
+            ng-click="selectedNav='availability'"
+            href="/admin-panel.html#!/availability"
+            class="list-group-item list-group-item-action bg-light"
+            ><i class="fas fa-globe"></i> Availability</a
+          >
+           <a
+            ng-show="sessionInfo.sessionInfo.userType=='hotelPartner'"
+            style="background-color: {{selectedNav=='Bulk_edit'?'#DAE0E5!important':''}};"
+            ng-click="selectedNav='Bulk_edit'"
+            href="/admin-panel.html#!/bulk_edit"
+            class="list-group-item list-group-item-action bg-light"
+            ><i class="fas fa-globe-americas"></i> Bulk Edit</a
+         
+          >
+          <a
+            ng-show="sessionInfo.sessionInfo.userType=='hotelPartner'"
+            style="background-color: {{selectedNav=='bookings'?'#DAE0E5!important':''}};"
+            ng-click="selectedNav='bookings'"
+            href="/admin-panel.html#!/property-bookings"
+            class="list-group-item list-group-item-action bg-light"
+            ><i class="fas fa-history"></i> Booking</a
+          >
+          <a
+            ng-show="sessionInfo.sessionInfo.userType=='hotelPartner'"
+            style="background-color: {{selectedNav=='report'?'#DAE0E5!important':''}};"
+            ng-click="selectedNav='report'"
+            href="/admin-panel.html#!/report"
+            class="list-group-item list-group-item-action bg-light"
+            ><i class="fas fa-file"></i> Report</a
+          >
+          <!-- properties end -->
+
+          <!-- transports -->
+          <a
+            ng-show="sessionInfo.sessionInfo.userType=='transportPartner'"
+            style="background-color: {{selectedNav=='transports'?'#DAE0E5!important':''}};"
+            ng-click="selectedNav='transports'"
+            href="/admin-panel.html#!/transports"
+            class="list-group-item list-group-item-action bg-light"
+            ><i class="fas fa-bus"></i> Transport</a
+          >
+          <a
+            ng-show="sessionInfo.sessionInfo.userType=='transportPartner'"
+            style="background-color: {{selectedNav=='transport-bookings'?'#DAE0E5!important':''}};"
+            ng-click="selectedNav='transport-bookings'"
+            href="/admin-panel.html#!/transport-bookings"
+            class="list-group-item list-group-item-action bg-light"
+            ><i class="fas fa-history"></i> Booking</a
+          >
+          <!-- transports end -->
+
+          <!-- common -->
+          <a
+            style="background-color: {{selectedNav=='profile'?'#DAE0E5!important':''}};"
+            ng-click="selectedNav='profile'"
+            href="/admin-panel.html#!/profile"
+            class="list-group-item list-group-item-action bg-light"
+            ><i class="fas fa-user-circle"></i> Profile</a
+          >
+          <!-- common end -->
+        </div>
+      </div>
+      <!-- /#sidebar-wrapper -->
+
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <nav
+          class="navbar navbar-expand-lg navbar-light bg-light border-bottom"
+        >
+          <button class="btn btn-primary" id="menu-toggle">
+            <i class="fa fa-bars fa-lg" aria-hidden="true"></i>
+          </button>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+              <li class="nav-item active">
+                <a style="cursor: pointer" class="nav-link" ng-click="logout()"
+                  ><i class="fa fa-power-off" aria-hidden="true"></i> Log Out
+                  <span class="sr-only">(current)</span></a
+                >
+              </li>
+            </ul>
+          </div>
+        </nav>
+
+        <div class="container-fluid">
+          <!-- main content -->
+          <ng-view autoscroll="true"></ng-view>
+          <!-- main content end -->
+        </div>
+      </div>
+      <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- navbar -->
+    <!-- <ng-include src="navTemplate"></ng-include> -->
+    <!-- navbar end -->
+
+    <!-- main content -->
+    <!-- <ng-view autoscroll=true></ng-view> -->
+    <!-- main content end -->
+
+    <!-- footer -->
+    <!-- <ng-include src="footerTemplate"></ng-include> -->
+    <!-- footer end -->
+  </body>
+</html>

@@ -1,0 +1,6 @@
+{
+  "name": "FailedCountry",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./FailedCountry.js"
+}

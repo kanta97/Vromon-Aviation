@@ -1,0 +1,45 @@
+.logout_btn {
+  cursor: pointer;
+  background: #fff;
+  box-sizing: border-box;
+  color: #000;
+  margin: 0 0 0 25px;
+  font-weight: 400;
+}
+
+.right_nav_btn {
+  /* margin: 0 30px 0 0; */
+  font-size: 16px;
+  /* color: #000; */
+}
+.sidebar .nav 
+{
+  width: 250px !important;
+}
+.sidebar {
+  background-color: #fff;
+  
+}
+.sidebar .nav-link {color: #333;}
+.sidebar .nav-link.active {
+  background-color: #cccccc;
+  color: #333;
+}
+.sidebar .nav-link.active .nav-icon {
+  color: #333;
+}
+.sidebar .nav-link:hover {
+  color: #333;
+  background: #ccc;
+}
+.custom_dropdown .dropdown-menu{
+border: unset !important;
+border-radius: 6px;
+margin-top: 10px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+font-family:"Segoe UI" !important;
+}
+.custom_dropdown .dropdown-item{
+border-bottom: unset !important;
+
+}

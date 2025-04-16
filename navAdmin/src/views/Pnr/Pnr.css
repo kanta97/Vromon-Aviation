@@ -1,0 +1,53 @@
+.margin-right10{
+  margin-right: 10px;
+}
+.add_btn {
+  margin: 5px 15px 5px 0;
+}
+.pnr_table{
+  
+  padding: 0 !important;
+}
+.pnr_table .ReactTable {
+  border: unset !important;
+}
+.ReactTable .rt-thead.-header{
+  box-shadow: unset !important;
+}
+.pnr_table  .ReactTable .rt-thead.-header {
+  position: sticky;
+  top: 0; /* Keep the header at the top */
+  z-index: 1; /* Ensure the header stays above the body */
+  background-color: #fff; /* Add background to avoid overlap issues */
+}
+
+.pnr_table .ReactTable .rt-table {
+  flex: auto 1;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  width: 100%;
+  border-collapse: collapse;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+.pnr_table .ReactTable .rt-tbody {
+  flex: 99999 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: unset !important;
+}
+.pnr_table .ReactTable .rt-thead .rt-th {
+ text-transform: uppercase;
+ text-align: center;
+ padding: 10px 5px;
+ font-weight: 600;
+ border: 1px solid #e4e5e6;
+}
+.pnr_table .ReactTable .rt-tbody .rt-td {
+  
+  text-align: center;
+  padding: 5px 5px 4px 5px;
+  border-right: 1px solid #e4e5e6 !important;
+  border-top: 1px solid #e4e5e6 !important;
+ }

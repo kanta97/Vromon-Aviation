@@ -1,0 +1,96 @@
+.preview_card {
+  border: unset;
+}
+.flight_card h5 {
+}
+.preview_card h5 {
+  border: 1px solid #ccc;
+  padding: 0.75rem;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 500;
+  height: 48px;
+  color: #333;
+}
+.preview_card label {
+  font-size: 16px;
+  color: #7b7b7b;
+  margin-top: 0.5rem;
+  font-weight: 600;
+}
+.flight_stops_info {
+  background-color: #10b7b1;
+  height: 2px;
+  width: 110px;
+  position: relative;
+  margin: 8px 0px;
+  display: inline-block;
+}
+@media (max-width: 575.98px) {
+  .flight_stops_info {
+    width: 65px;
+  }
+}
+.flight_stops_info::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 8px 0 0;
+  border-color: #10b7b1 transparent transparent transparent;
+  right: -2px;
+  top: -6px;
+  -webkit-transform: scaleY(-1);
+  transform: scaleY(-1);
+}
+
+.flight_stops_info::before {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 8px 0 0px 8px;
+  border-color: #10b7b1 transparent transparent transparent;
+  left: -2px;
+  bottom: -6px;
+  -webkit-transform: scaleY(1);
+  transform: scaleY(1);
+}
+
+.flight_stop_names {
+  color: #10b7b1;
+  font-size: 0.8571428571rem;
+  line-height: 14px;
+  font-weight: 400;
+  text-align: center;
+  margin-top: 8px;
+}
+@media (max-width: 575.98px) {
+  .flight_stop_names {
+    font-size: 12px;
+    line-height: 14px;
+  }
+}
+.flight_stop_text {
+  position: relative;
+  margin-right: 5px;
+}
+
+.flight_stop_text::before {
+  content: "";
+  position: absolute;
+  top: calc(100% - 27px);
+  left: calc(50% - 5px);
+  width: 8px;
+  height: 8px;
+  border-radius: 100%;
+  background-color: #fff;
+  border: 1px solid #10b7b1;
+}
+.box_dev {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}

@@ -1,0 +1,64 @@
+<div class="container-fluid mt-4" ng-controller="transportBookingController">
+  <div class="row">
+    <div class="col-md-12">
+      <form>
+        <div class="form-group">
+          <input
+            ng-keyup="getAllBookingList();"
+            ng-model="searchText"
+            type="text"
+            class="form-control"
+            id="searchText"
+            aria-describedby="searchText"
+            placeholder="Search Booking by Room Name"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row" ng-if="bookingLoading==1;">
+    <div class="col-md-12 text-center">
+      <img class="mb-3" height="60px;" src="assets/loading.gif" />
+    </div>
+  </div>
+
+  <div ng-if="bookingLoading==0 && allBookingList.length==0" class="row mt-2">
+    <div class="col-md-12 text-center">
+      <h5>No Data</h5>
+    </div>
+  </div>
+
+  <div class="row mt-2" ng-if="bookingLoading==0 && allBookingList.length!=0;">
+    <div class="col-md-12">
+      <div class="table-responsive stickyTable" style="height: 74vh">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Total Seat</th>
+              <th scope="col">Air Conditioning</th>
+              <th scope="col">Total Baggage</th>
+              <th scope="col">Gear Type</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="booking in allBookingList">
+              <td>{{booking.id}}</td>
+              <!-- <td>{{booking.propertyId}}</td> -->
+              <td>{{booking.userName}}</td>
+              <td>{{booking.userId}}</td>
+              <td>{{booking.roomName}}</td>
+              <td>{{booking.totalAmount | number}}</td>
+              <td>{{booking.totalDays}}</td>
+              <td>{{booking.totalRoom}}</td>
+
+              <td></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

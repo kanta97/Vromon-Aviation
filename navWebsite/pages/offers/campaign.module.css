@@ -1,0 +1,178 @@
+
+.slideshow_camp{
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+  
+  }
+  
+  .slideshow_camp .slideshowSlider {
+    display: flex;
+    transition: transform 0.5s ease;
+  }
+  
+  .slideshow_camp .slide {
+    flex: 0 0 100%;
+  }
+  
+  .slideshow_camp .slide img {
+    width: 100%;
+    height: auto;
+    margin-top: 1rem;
+    border-radius: 12px;
+  }
+  
+  .slideshow_camp .slideshowDots {
+    text-align: center;
+  }
+  
+  .slideshow_camp .slideshowDot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+  }
+  
+  .slideshow_camp .slideshowDot.active {
+    background-color: var(--primary-color) !important;
+  }
+  .camapin_text{
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #000;
+  }
+  .camapin_text2 div{
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1.25;
+    color: #000;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 280px;
+    height: 20px;
+}
+  @media (max-width: 575.98px) { 
+
+    .img_offer{
+      border-radius: 0.375rem;
+      width: 100px;
+      height: 120px;
+     }
+    .campain_page{
+        width: 101%;
+    }
+    .camapin_text{
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.25;
+    color: #000;
+    width: 160px;
+  } 
+  .camapin_text2 div{
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: #000;
+    width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+
+    height: 20px;
+  }
+  .campain_btn{
+    color: var(--primary-color);
+    font-size: 12px !important;
+    font-weight: 600;
+  }
+  .link_camp {
+    
+    background-color: #fff !important;
+    padding: 1rem !important;
+    font-size: 14px !important;
+    font-weight: 600;
+    color: #000;
+  }
+  
+  }
+  .campain_text_short{
+    font-size: 16px;
+    font-weight: 400;
+    line-height: 1.25;
+    color: #000;
+  }
+  .campain_btn{
+    color: var(--primary-color);
+    font-size: 16px;
+    font-weight: 600;
+  }
+  .link_camp .active {
+    color: unset !important;
+    background-color: #fff !important;
+    border-color: unset !important;
+  
+  }
+  .link_camp {
+    
+    background-color: #fff !important;
+    padding: 1.5rem ;
+    font-size: 18px !important;
+    font-weight: 500 !important;
+    color: #3a4856 !important;
+    /* border-top-left-radius: unset !important; 
+   border-top-right-radius: unset !important; */
+  }
+ 
+ .img_offer{
+  border-radius: 0.375rem;
+ }
+  .campain_bridge{
+    font-size: 20px;
+  }
+  .campain_header{
+    font-weight: 600;
+    font-size: 24px;
+  }
+
+  .all_offers{
+    background-color: #fff;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 12px;
+margin-top: 6rem;
+  }
+  .all_offers img{
+  
+    border-radius: 12px;
+
+  }
+  .all_offers .table  {
+    /* border-color: #ddd !important; */
+  }
+  .campain_book{
+    font-size: 44px;
+    font-weight: 600;
+    color: var(--primary-color);
+  }
+  .camPin_tab{
+    background-color: #fff;
+    border-radius:0 .5rem .5rem .5rem;
+    /* padding: .75rem 0; */
+  }
+
+.campain_page{
+  background-color: #fff;
+  border-radius: 0.375rem;
+}
+.no_offer{
+  font-size: 20px;
+  font-weight: 600;
+  background-color: #fff;
+  
+  padding:0 1rem;
+}

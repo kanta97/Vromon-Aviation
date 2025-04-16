@@ -1,0 +1,325 @@
+<div class="container-fluid mt-4" ng-controller="ratesController">
+  <div class="row">
+    <div class="col-md-2">
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-success"
+        ng-click="addEditRate('addShow', '')"
+      >
+        <i class="fa fa-plus" aria-hidden="true"></i> Add Rate
+      </button>
+    </div>
+  </div>
+
+  <div class="row" ng-if="rateLoading==1;">
+    <div class="col-md-12 text-center">
+      <img class="mb-3" height="60px;" src="assets/loading.gif" />
+    </div>
+  </div>
+  <div class="row mt-2" ng-if="allRates.length==0;">
+    <div class="col-md-12 text-center">
+      <h5>No Data</h5>
+    </div>
+  </div>
+  <div class="row mt-2" ng-if="rateLoading==0 && allRates.length!=0;">
+    <div class="col-md-12">
+      <div class="table-responsive stickyTable" style="height: 74vh">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Room Name</th>
+              <th scope="col">Sun</th>
+              <th scope="col">Mon</th>
+              <th scope="col">Tue</th>
+              <th scope="col">Wed</th>
+              <th scope="col">Thu</th>
+              <th scope="col">Fri</th>
+              <th scope="col">Sat</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-if="rate.rateData" ng-repeat="rate in allRates">
+              <td>{{rate.roomName}}</td>
+              <td ng-repeat="price in rate.rateData">
+                BDT {{price.basePrice+price.tax}}
+              </td>
+              <td>
+                <i
+                  class="fa fa-edit"
+                  aria-hidden="true"
+                  ng-click="addEditRate('editShow', rate)"
+                  style="cursor: pointer; color: #ffc107"
+                ></i>
+                &nbsp; &nbsp;
+                <i
+                  class="fa fa-trash"
+                  ng-click="deleteProperty('warning', rate.id)"
+                  style="cursor: pointer; color: #dc3545"
+                  aria-hidden="true"
+                ></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="propertyModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="supplierModal"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <form ng-submit="addEditRate('addEdit', '')">
+          <div class="modal-header">
+            <h5 class="modal-title" id="propertyModalTitle">
+              {{propertyModalTitle}}
+            </h5>
+            <button
+              ng-click="clearModal()"
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body scrolling-modal">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label ng-if="propertyModalTitle==='Edit Rate'"
+                      >Room: {{rates.roomName}}</label
+                    >
+                    <select
+                      ng-if="propertyModalTitle==='Add Rate'"
+                      class="form-control"
+                      ng-model="rates.id"
+                      required
+                    >
+                      <option value="" disabled>Select Room</option>
+                      <option ng-repeat="room in rooms" value="{{room.id}}">
+                        {{room.roomName}}
+                      </option>
+                    </select>
+                    <div class="table-responsive stickyTable mt-2">
+                      <table class="table">
+                        <thead>
+                          <tr>
+                            <th scope="col">Day</th>
+                            <th scope="col">Base Price (BDT)</th>
+                            <th scope="col">Tax (BDT)</th>
+                            <th scope="col">Total (BDT)</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr ng-repeat="rate in rates.rateData">
+                            <td>{{rate.day}}</td>
+                            <td>
+                              <input
+                                ng-model="rate.basePrice"
+                                class="form-control"
+                                type="number"
+                                placeholder="Base Price"
+                                required
+                              />
+                            </td>
+                            <td>
+                              <input
+                                ng-model="rate.tax"
+                                class="form-control"
+                                type="number"
+                                placeholder="Tax"
+                                required
+                              />
+                            </td>
+                            <td>{{rate.basePrice+rate.tax}}</td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              ng-click="clearModal()"
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              ng-if="propertyModalBtnTxt!='Details'"
+              type="submit"
+              class="btn btn-primary"
+            >
+              {{propertyModalBtnTxt}}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="deleteModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5
+            class="modal-title"
+            id="exampleModalLongTitle"
+            style="color: #ffc107"
+          >
+            Warning
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">Do you want to delete?</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            No
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            ng-click="deleteProperty('delete', '')"
+          >
+            Yes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <!-- <div class="modal fade" id="invoiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">All Invoices of {{suppNameInModal}}</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="container-fluid">
+                          <div class="row">
+                              <div class="col-md-12">
+                                  <div class="table-responsive">
+                                      <table class="table">
+                                          <thead>
+                                              <tr>
+                                                  <th scope="col">Invoice No.</th>
+                                                  <th scope="col">Name</th>
+                                                  <th scope="col">Quantity</th>
+                                                  <th scope="col">Date</th>
+                                              </tr>
+                                          </thead>
+                                          <tbody>
+                                              <tr ng-repeat="invoice in allInvoices">
+                                                  <td>{{invoice.invoiceNo}}</td>
+                                                  <td>{{invoice.rawMaterialName}}</td>
+                                                  <td>{{invoice.quantity}} {{invoice.unit}}</td>
+                                                  <td>{{invoice.creationDate | date : "dd MMM yyyy hh:mm:ss a"}}</td>
+                                              </tr>
+                                          </tbody>
+                                      </table>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  </div>
+              </div>
+          </div>
+      </div> -->
+
+  <!-- Modal -->
+  <!-- <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+          aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Filter</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+                  <div class="modal-body">
+                      <div class="container-fluid">
+                          <div class="row">
+                              <div class="col-md-6">
+                                  <form>
+                                      <div class="form-group">
+                                          <label for="fromDate">From</label>
+                                          <input ng-change="doFilter('apply')" ng-model="fromDate" type="date"
+                                              class="form-control" id="fromDate" aria-describedby="nameHelp"
+                                              placeholder="Enter From date">
+                                          <small ng-if="fromDateEmpty==1" style="color: #DC3545!important;" id="emailHelp"
+                                              class="form-text text-muted">From date
+                                              can't be empty</small>
+                                      </div>
+                                  </form>
+                              </div>
+                              <div class="col-md-6">
+                                  <form>
+                                      <div class="form-group">
+                                          <label for="toDate">To</label>
+                                          <input ng-change="doFilter('apply')" ng-model="toDate" type="date"
+                                              class="form-control" id="toDate" aria-describedby="nameHelp"
+                                              placeholder="Enter To date">
+                                          <small ng-if="toDateEmpty==1" style="color: #DC3545!important;" id="emailHelp"
+                                              class="form-text text-muted">To date
+                                              can't be empty</small>
+                                      </div>
+                                  </form>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-danger" ng-click="doFilter('finalApply')">Apply</button>
+                  </div>
+              </div>
+          </div>
+      </div> -->
+</div>

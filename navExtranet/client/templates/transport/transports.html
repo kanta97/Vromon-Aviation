@@ -1,0 +1,331 @@
+<div class="container-fluid mt-4" ng-controller="transportsController">
+  <div class="row">
+    <div class="col-md-2">
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-success"
+        ng-click="addEditProperty('addShow', '')"
+      >
+        <i class="fa fa-plus" aria-hidden="true"></i> Add Transport
+      </button>
+    </div>
+
+    <div class="col-md-10">
+      <form>
+        <div class="form-group">
+          <input
+            ng-keyup="getAllPropertyList();"
+            ng-model="searchText"
+            type="text"
+            class="form-control"
+            id="searchText"
+            aria-describedby="searchText"
+            placeholder="Search Transport"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row" ng-if="propertyLoading==1;">
+    <div class="col-md-12 text-center">
+      <img class="mb-3" height="60px;" src="assets/loading.gif" />
+    </div>
+  </div>
+  <div class="row mt-2" ng-if="allProperties.length==0;">
+    <div class="col-md-12 text-center">
+      <h5>No Data</h5>
+    </div>
+  </div>
+  <!-- ng-if="propertyLoading==0 && allProperties.length!=0;" -->
+  <div class="row mt-2" ng-if="propertyLoading==0 && allProperties.length!=0;">
+    <div class="col-md-12">
+      <div class="table-responsive stickyTable" style="height: 74vh">
+        <table class="table">
+          <thead>
+            <tr>
+              <!-- <th scope="col">ID</th> -->
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Description</th>
+              <th scope="col">Total Seat</th>
+              <th scope="col">Air Conditioning</th>
+              <th scope="col">Total Baggage</th>
+              <th scope="col">Gear Type</th>
+              <th scope="col">Pick up Location</th>
+              <th scope="col">Destination Location</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="property in allProperties">
+              <td>{{property.id}}</td>
+              <td>{{property.name}}</td>
+              <td>{{property.description}}</td>
+              <td>{{property.totalSeat}}</td>
+              <td>{{property.airConditioning}}</td>
+              <td>{{property.totalBaggage}}</td>
+              <td>{{property.gearType}}</td>
+              <td>{{property.pickupLocation}}</td>
+              <td>{{property.destinationLocation}}</td>
+              <!-- 
+              <td class="text-capitalize">
+                <i
+                  class="fas fa-{{property.status=='approved'?'check-circle text-success':'hourglass text-warning'}}"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="fas fa-{{property.isLive==1?'check-circle text-success':'times-circle text-danger'}}"
+                ></i>
+              </td>
+              <td>{{property.createDate | date : "dd MMM yyyy hh:mm:ss a"}}</td> -->
+              <td>
+                <i
+                  class="fa fa-edit"
+                  aria-hidden="true"
+                  ng-click="addEditProperty('editShow', property)"
+                  style="cursor: pointer; color: #ffc107"
+                ></i>
+                &nbsp; &nbsp;
+                <i
+                  class="fa fa-trash"
+                  ng-click="deleteProperty('warning', property.id)"
+                  style="cursor: pointer; color: #dc3545"
+                  aria-hidden="true"
+                ></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="propertyModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="supplierModal"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <form ng-submit="addEditProperty('addEdit', '')">
+          <div class="modal-header">
+            <h5 class="modal-title" id="transportModalTitle">
+              {{transportModalTitle}}
+            </h5>
+            <button
+              ng-click="clearModal()"
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body scrolling-modal">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="p-2">
+                    <div class="">
+                      <div class="form-group">
+                        <label for="name">Name</label>
+                        <input
+                          ng-model="propertyData.name"
+                          type="text"
+                          class="form-control"
+                          id="name"
+                          aria-describedby="name"
+                          placeholder="Enter Name "
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="">
+                      <div class="form-group">
+                        <label for="description">Description</label>
+                        <input
+                          ng-model="propertyData.description"
+                          type="text"
+                          class="form-control"
+                          id="description"
+                          aria-describedby="description"
+                          placeholder="Enter Description "
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="">
+                      <div class="form-group">
+                        <label for="totalSeat">Total Seat</label>
+                        <input
+                          ng-model="propertyData.totalSeat"
+                          type="number"
+                          class="form-control"
+                          id="totalSeat"
+                          aria-describedby="totalSeat"
+                          placeholder="Enter Seat "
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="mt-2">
+                      <div class="form-group">
+                        <label for="airConditioning">Air Conditioning</label>
+                        <select
+                          class="form-control"
+                          ng-model="propertyData.airConditioning"
+                          required
+                        >
+                          <option value="">Select</option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="mt-2">
+                      <div class="form-group">
+                        <label for="totalBaggage">Total Baggage</label>
+                        <input
+                          ng-model="propertyData.totalBaggage"
+                          type="number"
+                          class="form-control"
+                          id="totalBaggage"
+                          aria-describedby="totalBaggage"
+                          placeholder="Enter Baggage"
+                          required
+                        />
+                      </div>
+                    </div>
+
+                    <div class="mt-2">
+                      <div class="form-group">
+                        <label for="gearType">Gear Type</label>
+                        <select
+                          class="form-control"
+                          ng-model="propertyData.gearType"
+                          required
+                        >
+                          <option value="">Select</option>
+                          <option value="Yes">Auto</option>
+                          <option value="No">Manual</option>
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="">
+                      <div class="form-group">
+                        <label for="pickupLocation">Pick up Location</label>
+                        <input
+                          ng-model="propertyData.pickupLocation"
+                          type="text"
+                          class="form-control"
+                          id="pickupLocation"
+                          aria-describedby="pickupLocation"
+                          placeholder="Enter Pick up Location "
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="">
+                      <div class="form-group">
+                        <label for="destinationLocation"
+                          >Destination Location</label
+                        >
+                        <input
+                          ng-model="propertyData.destinationLocation"
+                          type="text"
+                          class="form-control"
+                          id="destinationLocation"
+                          aria-describedby="destinationLocation"
+                          placeholder="Enter Destination Location "
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              ng-click="clearModal()"
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              ng-if="propertyModalBtnTxt!='Details'"
+              type="submit"
+              class="btn btn-primary"
+            >
+              {{propertyModalBtnTxt}}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="deleteModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5
+            class="modal-title"
+            id="exampleModalLongTitle"
+            style="color: #ffc107"
+          >
+            Warning
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">Do you want to delete?</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            No
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            ng-click="deleteProperty('delete', '')"
+          >
+            Yes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

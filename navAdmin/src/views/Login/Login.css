@@ -1,0 +1,74 @@
+.body1 {
+    margin: 0;
+    padding: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+  }
+  .container1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .title1 {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    text-align: center;
+    background: linear-gradient(to right, #c2c2c2, #555555);
+    -webkit-background-clip: text;
+    color: transparent;
+    border-bottom: 3px solid #ccc;
+    margin: 0 115px;
+    line-height: 50px;
+  }
+  
+
+
+  
+  .container1 form {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+  }
+  
+  .container1 input {
+    padding: 10px 0px 5px 2px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    border: unset;
+    border-bottom: 1px solid #ced4da;
+    border-radius: 5px;
+    outline: none;
+  }
+  
+  .container1 .card_cus {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border-radius: 16px;
+  }
+  
+  .container1 .button1 {
+    background-color:#10b7b1;
+    color: white;
+    font-size: 14px;
+    padding: 10px;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+  }
+  
+  .container1 .button1:hover {
+    background-color: #10b7b1;
+  }
+  

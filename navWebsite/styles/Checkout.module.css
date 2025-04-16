@@ -1,0 +1,435 @@
+.head {
+    color: green;
+}
+.cardleft {
+    /* border-left: 4px solid rgba(184, 159, 159, 0.548); */
+    align-self: center;
+    border-left: 3px solid darkgray;
+}
+.flight_card {
+    width: 100%;
+    background-color: #ecf3fe;
+}
+.flight_card_right {
+    margin-top: 5px;
+}
+.discount_info1 {
+    color: #8d9195;
+    font-size: 12px;
+    line-height: 22px;
+    font-weight: 600;
+}
+.discount_info2 {
+    color: #8d9195;
+    font-size: 11px;
+    line-height: 22px;
+    font-weight: 600;
+}
+.discount_info3 {
+    color: #3a4856;
+    font-size: 14px;
+    line-height: 22px;
+    font-weight: 600;
+}
+.discount_info_my {
+    color: #3a4856;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+}
+.discount_info4 {
+    font-weight: 600;
+    border-color: var(--primary-color) !important;
+    background-color: var(--primary-color) !important;
+    color: #fff !important;
+    font-size: 11px;
+    border-radius: 4px;
+    padding: 6px;
+    text-align: center;
+}
+.it1 {
+    text-align: left;
+}
+.it2 {
+    text-align: left;
+}
+.oktext1 {
+    color: #8d9195;
+    font-size: 14px;
+}
+.oktext2 {
+    font-size: 16px;
+}
+@media (max-width: 575.98px) {
+    .oktext2 {
+        font-size: 11px;
+        text-align: left;
+    }
+}
+.oktext3 {
+    font-size: 5px;
+}
+.oktext33 h6 {
+    color: #3a4856;
+    font-size: 13px;
+    display: -webkit-box;
+    max-width: 400px;
+ 
+    margin-bottom: 0.25rem;
+}
+.oktext3 {
+    color: #3a4856;
+    font-size: 13px;
+    display: -webkit-box;
+    max-width: 400px;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 0.25rem;
+}
+@media (max-width: 575.98px) {
+    .oktext3 {
+        font-size: 10px;
+
+        text-align: left;
+    }
+    .oktext33 h6 {
+        font-size: 10px;
+
+        text-align: left;
+    }
+}
+.oktext4 {
+    font-size: 16px;
+}
+@media (max-width: 575.98px) {
+    .oktext4 {
+        font-size: 10px;
+        font-weight: 600;
+        text-align: left;
+    }
+}
+.card_body {
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+.icotext {
+    font-size: 9px;
+    padding: auto;
+}
+
+@media screen and (max-width: 800px) and (min-width: 100px) {
+    .it1 {
+        text-align: left;
+    }
+    .it2 {
+        text-align: left;
+    }
+}
+
+.myfooter {
+    /* background-color: var(--primary-color) !important; */
+    color: #000;
+    border: none;
+    display: flex;
+    flex-direction: row;
+    border-radius: 16px 16px 0 0;
+    justify-content: space-between;
+    padding: 6px;
+    margin-bottom: -32px;
+    padding-bottom: 12px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.myfooter_child {
+    padding: 5px;
+    color: white;
+    font-size: 500;
+}
+.myfooter_child1 {
+    margin-left: 5px;
+    margin-right: 10px;
+}
+.hidedetails {
+    padding: 4px;
+    color: white;
+    font-size: small;
+    font-weight: bold;
+    margin-right: 8px;
+}
+
+.Each_row {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border: none;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+.nav_link {
+    color: var(--bs-nav-tabs-link-active-color);
+    background-color: var(--bs-nav-tabs-link-active-bg);
+    border-color: none;
+}
+
+.active {
+    font-weight: 600;
+    border-color: var(--primary-color) !important;
+    background-color: var(--primary-color) !important;
+    color: #fff !important;
+    border: none;
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+    color: #f8f9fa;
+    background-color: var(--primary-color) !important;
+    border-color: var(--bs-nav-tabs-link-active-border-color);
+}
+
+.mysum {
+    display: flex;
+    justify-content: space-around;
+    padding: 4px;
+    width: 95%;
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+.mysum1 {
+    color: var(--primary-color) !important;
+    font-size: 14px;
+}
+.mysum2 {
+    color: #8d9195;
+    font-size: 14px;
+}
+.mysum3 {
+    color: #8d9195;
+    font-size: 14px;
+}
+.mysum4 {
+    font-size: 13px;
+}
+.mysum_after {
+    display: flex;
+    justify-content: space-around;
+    width: 95%;
+    border-top: 3px solid #8d9195;
+    margin-bottom: 10px;
+    padding: 9px;
+}
+.taxtotall {
+    color: #3a4856;
+    font-size: 16px;
+    line-height: 22px;
+    font-weight: 600;
+}
+.taxtotall1 {
+    /* color: #3a4856;
+    font-size: 19px;
+    line-height: 22px;
+    font-weight: bold; */
+}
+.mycolumn3 {
+    border-left: 3px solid #8d9195;
+    padding: 0px;
+    align-self: center;
+}
+.icotext1 {
+    font-size: 8px;
+}
+.searchitem {
+    border: none;
+    margin-top: 5px;
+    border-bottom: 15px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.check {
+    color: #8d9195;
+    font-size: 16px;
+    transform: translateY(12px);
+}
+.mycardok {
+    display: flex;
+    /* border: 1px solid var(--primary-color) !important; */
+    border-radius: 16px;
+    margin-top: 5px;
+    padding: 0.5rem;
+    margin-bottom: 16px;
+    background-color: #fff;
+}
+.my_input {
+    margin-top: 15px;
+    margin-bottom: 0 !important;
+    width: 320px;
+    /* height: 56px; */
+}
+.image_box {
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.dac {
+    color: #8d9195;
+    font-size: 16px;
+}
+.dac1 {
+    color: #3a4856;
+    font-size: 16px;
+    font-weight: bold;
+}
+.nderline {
+    background: #8d919552;
+    height: 2px;
+
+    margin-top: 14px;
+    margin-bottom: 30px;
+}
+.payinfo {
+    color: #8d9195;
+    font-size: 16px;
+}
+.dis {
+    color: #3a4856;
+    font-size: 16px;
+    width: 110px;
+}
+.pay_footer {
+    background-color: #27266b2b;
+    padding: 11px;
+    margin-top: 11px;
+    border-radius: 16px;box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+}
+.dis1 {
+    color: #3a4856;
+    font-size: 18px;
+    font-weight: bold;
+}
+.boxshado {
+    /* box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; */
+    border: none;
+    background-color: unset !important;
+}
+.boxshaddo{
+    background-color: #fff;
+    border: none;
+    border-radius: 16px;
+}
+@media (max-width: 575.98px) {
+
+    .boxshaddo{
+        margin-top: 24px;
+    }
+   }
+.insidepay {
+    padding: 9px;
+    margin-bottom: 10px;
+    margin-top: -20px;
+    border-bottom: 2px solid #8d9195;
+}
+.paybtton {
+    background: white;
+    position: relative;
+    color: black;
+    margin-right: 36px;
+    border: 2px solid var(--primary-color) !important;
+    --bs-btn-border-color: var(--primary-color) !important;
+}
+.paybtton:hover {
+    color: white;
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+.paybtton2 {
+    background: white;
+    position: relative;
+    color: black;
+    margin-right: 36px;
+    border: 2px solid #cedcde;
+    --bs-btn-border-color: #c2d4d6;
+}
+.paybtton2:hover {
+    color: white;
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+.paybtton3 {
+    background: white;
+    position: relative;
+    color: black;
+    margin-right: 36px;
+    margin-left: 10px;
+    border: 2px solid #cedcde;
+    --bs-btn-border-color: #c2d4d6;
+}
+.paybtton3:hover {
+    color: white;
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+}
+.payimg {
+    padding: 5px;
+    border-right: 2px solid #cedcde;
+}
+.pageni {
+    color: rgb(0, 0, 0);
+    font-size: 10px;
+    font-weight: bold;
+    margin-left: 35px;
+    margin-right: 30px;
+    align-self: center;
+    margin-top: auto;
+}
+@media (max-width: 375.98px) { .pageni {
+    
+    margin-right: 10px;
+} 
+.pageni1 {
+   
+    margin-left:0% !important;
+}}
+.pageni1 {
+    color: white;
+    background-color: rgb(150, 140, 140);
+    border-radius: 30px;
+
+    align-self: center;
+    margin-left: 8%;
+    text-align: center;
+    width: 25px;
+    height: 25px;
+    padding: 3px 0px;
+    border-radius: 15px;
+    font-size: 12px;
+}
+.dpc {
+    background-color: #2e2d80 !important;
+}
+
+.dp {
+    transform: translateY(-30px);
+}
+
+.image_upload > input {
+    display: none;
+}
+.tree {
+    margin-right: 100%;
+    width: 100%;
+    border-right: 2px solid #cedcde;
+}
+
+.margin_bottom11 {
+    margin-bottom: 15px;
+    background-color: red;
+    color: #fff;
+    padding: .5rem;
+}
+
+
+.pagebar {
+    margin-top: 91px !important;
+    background-color: 'none';
+    color: 'black';
+    border-radius: 10px;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
+    border: unset;
+}

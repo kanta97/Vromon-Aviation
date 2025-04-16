@@ -1,0 +1,6 @@
+{
+  "name": "FailedDestination",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./FailedDestination.js"
+}

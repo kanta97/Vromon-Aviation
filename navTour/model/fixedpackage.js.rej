@@ -1,0 +1,9 @@
+diff a/model/fixedpackage.js b/model/fixedpackage.js	(rejected hunks)
+@@ -255,7 +255,6 @@
+ }
+ 
+ Fixedpackage.getAllFeaturedPackage= function getAllFeaturedPackage(result) {
+-    sql.query("Select * from fixed_packages WHERE id = ?",[1], function (err, res) {
+     sql.query("SELECT origin,destination,description,vaidFrom,validTo,`status`,itinerary,exclusions,minimum_number_people,`name`,summary,duration,terms_conditions,tour_type,price,currency,path,res_type FROM fixed_packages LEFT JOIN price_matrix ON fixed_packages.id = price_matrix.package_id LEFT JOIN resources ON resources.source_id=fixed_packages.id WHERE fixed_packages.isFeatured=1 AND resources.isFeatured=1 AND price_matrix.tour_type='REGULAR'", function (err, res) {
+ 
+         if (err) {

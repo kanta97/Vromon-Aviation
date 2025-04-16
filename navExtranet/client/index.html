@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Navigator Tourism</title>
+    <link rel="icon" href="" type="image/png" />
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <base href="/" />
+
+    <link
+      rel="icon"
+      type="image/x-icon"
+      href="https://navigatortourism.com/assets/img/fav.ico"
+    />
+    <!--Material Bootstrap CSS -->
+    <!-- Font Awesome -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+    />
+    <!-- Bootstrap core CSS -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet" />
+    <!-- Material Design Bootstrap -->
+    <!-- <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/css/mdb.min.css" rel="stylesheet"> -->
+
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- JQuery -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"
+    ></script>
+    <!-- Bootstrap tooltips -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.4/umd/popper.min.js"
+    ></script>
+    <!-- Bootstrap core JavaScript -->
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"
+    ></script>
+    <!-- MDB core JavaScript -->
+    <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.10.1/js/mdb.min.js"></script> -->
+    <!-- angularjs -->
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"
+    ></script>
+
+    <!-- axios -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+
+    <!-- angularjs routing -->
+    <script
+      type="text/javascript"
+      src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular-route.js"
+    ></script>
+
+    <!-- angularjs controllers -->
+    <script type="text/javascript" src="./js/controllers/root.ctrl.js"></script>
+    <script type="text/javascript" src="./js/controllers/auth.ctrl.js"></script>
+
+    <!-- custom style -->
+    <link href="./css/index.css" rel="stylesheet" />
+    <!-- custom style end -->
+  </head>
+
+  <body ng-app="navExtranetApp" ng-controller="authController">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+        <a class="navbar-brand" href="#">Navigator Tourism</a>
+      </div>
+    </nav>
+    <div id="verifySuccess" class="container text-center mt-4">
+      <i class="fas fa-check-circle fa-3x text-success"></i>
+      <br />
+      <small>Verified</small>
+      <br />
+      <small>You have successfully registered. Please sign in now.</small>
+    </div>
+    <div ng-show="showLogin" id="signin" class="container text-center">
+      <form class="form-signin" ng-submit="login();">
+        <h4 class="mb-3">Sign in to manage your property</h4>
+        <div ng-if="errMsgFlag==1;" class="alert alert-danger" role="alert">
+          {{errMsg}}
+        </div>
+        <label for="signinEmail" class="sr-only">Email address</label>
+        <input
+          ng-model="signinEmail"
+          type="email"
+          id="signinEmail"
+          class="form-control"
+          placeholder="Email address"
+          required
+          autofocus
+        />
+        <label for="signinPassword" class="sr-only">Password</label>
+        <input
+          ng-model="signinPassword"
+          type="password"
+          id="signinPassword"
+          class="form-control"
+          placeholder="Password"
+          required
+        />
+        <img
+          ng-if="loginLoading==1;"
+          class="mb-3"
+          height="39px;"
+          src="assets/loading.gif"
+        />
+        <br />
+        <button
+          class="btn btn-lg btn-primary btn-block text-capitalize"
+          type="submit"
+        >
+          Sign in
+        </button>
+      </form>
+      <div class="row">
+        <div class="col-md-12">
+          <h4>Or,</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <form class="form-signin">
+            <button
+              class="btn btn-lg btn-primary btn-block text-capitalize"
+              type="submit"
+              ng-click="showLogin=false;"
+            >
+              Create your partner account
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div ng-show="!showLogin" id="signup" class="container text-center">
+      <form class="form-signin" ng-submit="signup();">
+        <h4 class="mb-3">Create your partner account</h4>
+        <div ng-if="errMsgFlag==1;" class="alert alert-danger" role="alert">
+          {{errMsg}}
+        </div>
+        <label for="name" class="sr-only">Name</label>
+        <input
+          ng-model="name"
+          type="text"
+          id="inputName"
+          class="form-control"
+          placeholder="Name"
+          required
+          autofocus
+        />
+        <label for="inputEmail" class="sr-only">Email address</label>
+        <input
+          ng-model="email"
+          type="email"
+          id="inputEmail"
+          class="form-control"
+          placeholder="Email address"
+          required
+          autofocus
+        />
+        <label for="inputPassword" class="sr-only">Password</label>
+        <input
+          ng-model="password"
+          type="password"
+          id="inputPassword"
+          class="form-control"
+          placeholder="Password"
+          required
+        />
+        <img
+          ng-if="signupLoading"
+          class="mb-3"
+          height="39px;"
+          src="assets/loading.gif"
+        />
+        <br />
+        <button
+          class="btn btn-lg btn-primary btn-block text-capitalize"
+          type="submit"
+        >
+          Sign Up
+        </button>
+      </form>
+      <div class="row">
+        <div class="col-md-12">
+          <h4>Or,</h4>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-md-12">
+          <form class="form-signin">
+            <button
+              class="btn btn-lg btn-primary btn-block text-capitalize"
+              type="submit"
+              ng-click="showLogin=true;"
+            >
+              Sign in
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div id="otpVerify" class="container text-center">
+      <form class="form-signin" ng-submit="verifyOtp();">
+        <h4>
+          An OTP code has been sent to your mail
+          <span class="text-success">"{{email}}"</span>, Please check your mail.
+        </h4>
+        <label for="otp" class="sr-only">OTP</label>
+        <input
+          ng-model="otp"
+          type="text"
+          id="otp"
+          class="form-control"
+          placeholder="Enter OTP code"
+          required
+          autofocus
+        />
+        <img
+          ng-show="otpLoading"
+          class="mb-3"
+          height="39px;"
+          src="assets/loading.gif"
+        />
+        <br />
+        <button
+          class="btn btn-lg btn-primary btn-block text-capitalize mt-3"
+          type="submit"
+        >
+          Verify
+        </button>
+      </form>
+    </div>
+  </body>
+</html>

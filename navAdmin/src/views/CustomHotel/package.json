@@ -1,0 +1,7 @@
+{
+    "name": "CustomHotel",
+    "version": "0.0.0",
+    "private": true,
+    "main": "./CustomHotel.js"
+  }
+  

@@ -1,0 +1,47 @@
+[
+
+    {
+        "id": 3,
+        "type": "flight",
+        "title": "Get only 20% discount on internation flights",
+        "content": "<div><p></p><p>  </p><p></p></div>",
+        "details": "",
+        "headerImg": "../assets/img/Emirates10header.jpg",
+        "cardImg": "../assets/img/Emirates10.jpg",
+        "status": "active"
+    },
+
+    {
+        "id": 4,
+        "type": "flight",
+        "title": "Enjoy Up to 25% Off on Emirates & Qatar Airways",
+        "content": "<div><p></p><p>  </p><p></p></div>",
+        "details": "",
+        "headerImg": "../assets/img/25DiscountHeader.jpg",
+        "cardImg": "../assets/img/25DiscountCard.jpg",
+        "status": "active"
+    },
+
+  {
+      "id": 7,
+      "type": "package",
+      "title": "Explore Bangkok-Pattaya in 4 Days",
+      "content": "<div><p>Make your Thailand tour exciting with our exclusive 3 night, 4day holiday package only at BDT. 12,400. Join us to get the best travel packages for Thailand. </p> <p><strong>Package Includes</strong>  </p><ul><li>Meet and Greet at the Airport</li>    <li>Dhaka to Thailand -Thailand to Dhaka Airfare included</li>    <li>2-night accommodation in Bangkok</li><li>1-night accommodation in Pattaya</li><li>Shahajalal International Airport - Bangkok Suvarnabhumi  Airport - Bangkok Hotel - Pattaya Hotel - Shahajalal International Airport </li><li>Daily breakfast at the hotel</li><li>Bangkok City tour on your own</li><li>Coral Island tour in Pattaya</li></ul></div>",
+      "details": "Discover Thailand magic only at BDT. 12,400",
+      "headerImg": "../assets/img/thaiheader.jpg",
+      "cardImg": "../assets/img/thaicard.jpg",
+      "status": "active"
+  },
+  {
+      "id": 8,
+      "type": "package",
+      "title": "Discover Exceptional Beauty of Kathmandu-Nagarkot in 4 Days.",
+      "content": "<div><p>Make your Nepal tour exciting with our exclusive 3 night, 4day package only at BDT. 12,400.Join us to get the best travel packages for Thailand.</p><p><strong>Package Includes</strong></p><ul><li>Pickup and Drop at the Airport.</li><li>Nepali-style traditional welcome at the Airport with Khada or mala. </li><li>A dedicated tour assistant will assist you throughout your travel .</li><li>2-night accommodation in Kathmandu on BB basis on a Twin/Triple sharing basis</li><li>1-night accommodation in Nagarkot on BB Basis on a Twin/Triple sharing basis.</li><li>Kathmandu – Nagarkot – Kathmandu by Private Vehicle</li><li>Daily breakfast at the hotel.</li><li>All sightseeing/activities are by private vehicle as per the itinerary. </li></ul></div>",
+      "details": "Enjoy the majestic Nepal tour package only at BDT. 12970",
+      "headerImg": "../assets/img/nhead.jpg",
+      "cardImg": "../assets/img/ncard.jpg",
+      "status": "active"
+  }
+
+
+]

@@ -1,0 +1,1 @@
+export {requestData} from './ReactDatatable'

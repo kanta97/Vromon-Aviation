@@ -1,0 +1,1832 @@
+<div class="container-fluid mt-4" ng-controller="roomsController">
+  <div class="row">
+    <div class="col-md-2">
+      <!-- Button trigger modal -->
+      <button
+        type="button"
+        class="btn btn-success"
+        ng-click="addEditProperty('addShow', '')"
+      >
+        <i class="fa fa-plus" aria-hidden="true"></i> Add Room
+      </button>
+    </div>
+    <!-- <div class="col-md-1">
+            <i title="Filter" class="fa fa-filter fa-2x"
+                style="cursor: pointer; margin-top: 3px; color: {{filterAppliedFlag==1?'#007BFF':'#6c757c'}};"
+                ng-click="doFilter('show')" aria-hidden="true"></i>
+            <i ng-show="filterAppliedFlag==1;" title="Clear" ng-click="getAllSupplierList(); filterAppliedFlag=0;"
+                class="fas fa-times text-danger" style="cursor: pointer;"></i>
+        </div> -->
+    <div class="col-md-10">
+      <form>
+        <div class="form-group">
+          <input
+            ng-keyup="getAllPropertyList();"
+            ng-model="searchText"
+            type="text"
+            class="form-control"
+            id="searchText"
+            aria-describedby="searchText"
+            placeholder="Search Room"
+          />
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <div class="row" ng-if="propertyLoading==1;">
+    <div class="col-md-12 text-center">
+      <img class="mb-3" height="60px;" src="assets/loading.gif" />
+    </div>
+  </div>
+  <div class="row mt-2" ng-if="allProperties.length==0;">
+    <div class="col-md-12 text-center">
+      <h5>No Data</h5>
+    </div>
+  </div>
+  <div class="row mt-2" ng-if="propertyLoading==0 && allProperties.length!=0;">
+    <div class="col-md-12">
+      <div class="table-responsive stickyTable" style="height: 74vh">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Property ID</th>
+              <th scope="col">Room Name</th>
+              <th scope="col">Total Room</th>
+              <!-- <th scope="col">Price/Night</th> -->
+              <th scope="col">Approval Status</th>
+              <th scope="col">Live</th>
+              <th scope="col">Date</th>
+              <th scope="col"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr ng-repeat="property in allProperties">
+              <td>{{property.id}}</td>
+              <td>{{property.roomName}}</td>
+              <td>{{property.noOfRoom}}</td>
+              <!-- <td>{{property.pricePerNight | number}}</td> -->
+              <td class="text-capitalize">
+                <i
+                  class="fas fa-{{property.status=='approved'?'check-circle text-success':'hourglass text-warning'}}"
+                ></i>
+              </td>
+              <td>
+                <i
+                  class="fas fa-{{property.isLive==1?'check-circle text-success':'times-circle text-danger'}}"
+                ></i>
+              </td>
+              <td>{{property.createDate | date : "dd MMM yyyy hh:mm:ss a"}}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  ng-click="showDetails(property)"
+                >
+                  Details
+                </button>
+                &nbsp; &nbsp;
+                <i
+                  class="fa fa-edit"
+                  aria-hidden="true"
+                  ng-click="addEditProperty('editShow', property)"
+                  style="cursor: pointer; color: #ffc107"
+                ></i>
+                &nbsp; &nbsp;
+                <i
+                  class="fa fa-trash"
+                  ng-click="deleteProperty('warning', property.id)"
+                  style="cursor: pointer; color: #dc3545"
+                  aria-hidden="true"
+                ></i>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="propertyModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="supplierModal"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+      <div class="modal-content">
+        <form ng-submit="addEditProperty('addEdit', '')">
+          <div class="modal-header">
+            <h5 class="modal-title" id="propertyModalTitle">
+              {{propertyModalTitle}}
+            </h5>
+            <button
+              ng-click="clearModal()"
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body scrolling-modal">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-md-12">
+                  <div
+                    ng-if="propertyModalBtnTxt=='Add'"
+                    class="alert alert-info"
+                    role="alert"
+                  >
+                    Start by telling us your property's name, contact details,
+                    and address. After adding you'll be able to make changes to
+                    your property before it goes live.
+                  </div>
+                  <!-- <label class="d-block" for="roomAvailDates"
+                    >Room Not Available</label
+                  > -->
+                  <!-- <span
+                    ng-repeat="date in notAvDates"
+                    class="btn btn-success mr-2 mb-2"
+                    >{{date}}
+                    <i
+                      ng-click="notAvDates.splice($index,1)"
+                      class="text-danger fas fa-times"
+                    ></i
+                  ></span> -->
+                  <!-- <div class="input-group date form-group" id="datepicker">
+                    <input
+                      ng-model="propertyData.roomNotAvailDates"
+                      type="text"
+                      class="form-control"
+                      id="Dates"
+                      name="Dates"
+                      placeholder="Select Dates"
+                      required
+                      autocomplete="off"
+                      readonly
+                      ng-change="showDates()"
+                    />
+                    <span class="input-group-addon"></span>
+                  </div> -->
+
+                  <div class="border border-primary rounded p-3">
+                    <!-- <h5>Basic Info</h5>
+                    <hr />
+                    <div class="form-group">
+                      <label for="inputName"
+                        >What's the name of your property?</label
+                      >
+                      <input
+                        ng-model="propertyData.propertyName"
+                        type="text"
+                        class="form-control"
+                        id="propertyName"
+                        aria-describedby="propertyName"
+                        placeholder="Enter property name"
+                        required
+                      />
+                    </div>
+                    <div class="form-group">
+                      <label for="inputRating">Star Rating</label>
+                      <select
+                        class="form-control"
+                        ng-model="propertyData.rating"
+                        required
+                      >
+                        <option value="">Select</option>
+                        <option value="N/A">N/A</option>
+                        <option value="1">1 ✯</option>
+                        <option value="2">2 ✯✯</option>
+                        <option value="3">3 ✯✯✯</option>
+                        <option value="4">4 ✯✯✯✯</option>
+                        <option value="5">5 ✯✯✯✯✯</option>
+                      </select>
+                    </div> -->
+
+                    <!-- <p
+                        class="d-inline-block font-weight-bold"
+                        for="RoomFareP"
+                      >
+                        Base price per night
+                      </p> -->
+                    <!-- <small>This is the lowest price that we automatically apply to this room for all
+                                                      dates. Before your property goes live, you can set seasonal pricing on your
+                                                      property dashboard.</small> -->
+                    <!-- <small for="RoomFareP2">
+                        (For {{propertyData.noOfGuest}} guest, per night)</small
+                      >
+                      <div class="form-group">
+                        <label for="RoomFare">BDT/Night</label>
+                        <input
+                          ng-model="propertyData.pricePerNight"
+                          type="text"
+                          class="form-control"
+                          id="RoomFare"
+                          aria-describedby="RoomFare"
+                          placeholder="BDT/Night"
+                          required
+                        />
+                      </div> -->
+                    <!-- <div class="form-group">
+                        <label for="roomLowerRate"
+                          >Do you offer a lower rate when there is less than
+                          guest?</label
+                        >
+                        <select
+                          class="form-control"
+                          ng-model="propertyData.haveLowerRateForGuest"
+                          required
+                        >
+                          <option value="">Please Select</option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                      </div> -->
+                    <div class="border border-primary rounded p-3 mt-3">
+                      <div class="d-flex justify-content-between">
+                        <p class="font-weight-bold" for="meal">Offers</p>
+                        <div
+                          ng-click="pushPriceOffer();"
+                          class="btn btn-success cursor-pointer"
+                          style="cursor: pointer"
+                        >
+                          Add Offer
+                        </div>
+                      </div>
+                      <div
+                        ng-repeat="offer in propertyData.priceOffers track by $index"
+                        class="border border-primary rounded p-3 mt-3"
+                      >
+                        <div class="d-flex justify-content-between">
+                          <p>Offer #{{$index+1}}</p>
+                          <div
+                            ng-click="propertyData.priceOffers.splice($index, 1)"
+                            class="btn btn-danger cursor-pointer"
+                            style="cursor: pointer"
+                          >
+                            Remove
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="offerName">Offer Name</label>
+                          <input
+                            ng-model="offer.name"
+                            type="text"
+                            placeholder="Offer Name"
+                            class="form-control"
+                            \
+                            required
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label for="offerPrice">Price</label>
+                          <input
+                            ng-model="offer.price"
+                            type="number"
+                            placeholder="Offer Price"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                        <div class="form-group">
+                          <label for="offerDescription">Description</label>
+                          <input
+                            ng-model="offer.description"
+                            type="text"
+                            placeholder="Offer Description"
+                            class="form-control"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- <div class="border border-primary rounded p-3 mt-3">
+                      <p class="font-weight-bold" for="partnerName">
+                        What are the contact details for this room?
+                      </p>
+                      <div class="form-group">
+                        <label for="partnerName">Contact Name</label>
+                        <input
+                          ng-model="propertyData.contactName"
+                          type="text"
+                          class="form-control"
+                          id="partnerName"
+                          aria-describedby="partnerName"
+                          placeholder="Contact Person's Name"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="partnerMobile">Contact Number</label>
+                        <input
+                          ng-model="propertyData.contactNumber"
+                          type="text"
+                          class="form-control"
+                          id="partnerMobile"
+                          aria-describedby="partnerMobile"
+                          placeholder="Contact Person's Number"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="partnerMobileAdditional"
+                          >Alternative Phone Number</label
+                        >
+                        <input
+                          ng-model="propertyData.altContactNumber"
+                          type="text"
+                          class="form-control"
+                          id="partnerMobileAdditional"
+                          aria-describedby="partnerMobileAdditional"
+                          placeholder="Contact Person's Alternative Number"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="multiplePorperty"
+                          >Do you own multiple hotels, or are you part of a
+                          property management company?</label
+                        >
+                        <select
+                          class="form-control"
+                          ng-model="propertyData.haveMultiHotelOrMgtPart"
+                          required
+                        >
+                          <option value="">Select</option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                      </div>
+                    </div> -->
+                    <!-- <div class="border border-primary rounded p-3 mt-3">
+                      <p class="font-weight-bold" for="partnerName">
+                        Where's your property located?
+                      </p>
+                      <div class="form-group">
+                        <label for="propertyAddressStreet"
+                          >Street Address</label
+                        >
+                        <input
+                          ng-model="propertyData.streetAddress"
+                          type="text"
+                          class="form-control"
+                          id="propertyAddressStreet"
+                          aria-describedby="propertyAddressStreet"
+                          placeholder="Street"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="propertyAddressStreet2"
+                          >Address line 2</label
+                        >
+                        <input
+                          ng-model="propertyData.addressLine"
+                          type="text"
+                          class="form-control"
+                          id="propertyAddressStreet2"
+                          aria-describedby="propertyAddressStreet2"
+                          placeholder="Street Line 2"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="propertyCountry">Country/Region</label>
+                        <input
+                          ng-model="propertyData.country"
+                          type="text"
+                          class="form-control"
+                          id="propertyCountry"
+                          aria-describedby="propertyCountry"
+                          placeholder="Country or Region"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="propertyCity">City</label>
+                        <input
+                          ng-model="propertyData.city"
+                          type="text"
+                          class="form-control"
+                          id="propertyCity"
+                          aria-describedby="propertyCity"
+                          placeholder="City"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="propertyState">State</label>
+                        <input
+                          ng-model="propertyData.state"
+                          type="text"
+                          class="form-control"
+                          id="propertyState"
+                          aria-describedby="propertyState"
+                          placeholder="State"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="propertyZip">ZIP Code</label>
+                        <input
+                          ng-model="propertyData.zipCode"
+                          type="text"
+                          class="form-control"
+                          id="propertyZip"
+                          aria-describedby="propertyZip"
+                          placeholder="ZIP Code"
+                          required
+                        />
+                      </div>
+                    </div> -->
+                  </div>
+                  <div class="border border-primary rounded p-3 mt-3">
+                    <h5>Layout and Pricing</h5>
+                    <hr />
+                    <!-- <p for="Layout">After you complete registration you'll be able to make changes to
+                                                your listing before it goes live.</p> -->
+                    <div class="border border-primary rounded p-3">
+                      <p class="font-weight-bold" for="RoomInfo">Room Info</p>
+                      <div class="form-group">
+                        <label for="roomType">Room Type</label>
+                        <select
+                          class="form-control"
+                          ng-model="propertyData.roomType"
+                          required
+                        >
+                          <option value="">Please Select</option>
+                          <option value="Single">Single</option>
+                          <option value="Double">Double</option>
+                          <option value="Twin">Twin</option>
+                          <option value="Twin/Double">Twin/Double</option>
+                          <option value="Triple">Triple</option>
+                          <option value="Quadruple">Quadruple</option>
+                          <option value="Family Suite">Family Suite</option>
+                          <option value="Studio">Studio</option>
+                          <option value="Apartment">Apartment</option>
+                          <option value="Dormitory Room">Dormitory Room</option>
+                          <option value="Bed in Dormitory">
+                            Bed in Dormitory
+                          </option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="RoomName">Room Name</label>
+                        <input
+                          ng-model="propertyData.roomName"
+                          type="text"
+                          class="form-control"
+                          id="RoomName"
+                          aria-describedby="RoomName"
+                          placeholder="Room Name"
+                          required
+                        />
+                        <small>
+                          This is the name guests will see on the
+                          Navigatortourism.com website.
+                        </small>
+                      </div>
+                      <div class="form-group">
+                        <label for="SmokingPolicy">Smoking Policy</label>
+                        <select
+                          class="form-control"
+                          ng-model="propertyData.haveSmokingPolicy"
+                          required
+                        >
+                          <option value="">Select</option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="bedroomCount">Number of Bedrooms</label>
+                        <input
+                          ng-model="propertyData.noOfBedRoom"
+                          type="text"
+                          class="form-control"
+                          id="bedroomCount"
+                          aria-describedby="bedroomCount"
+                          placeholder="Number of Bedrooms"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="livingroomCount"
+                          >Number of Living Rooms</label
+                        >
+                        <input
+                          ng-model="propertyData.noOfLivingRoom"
+                          type="number"
+                          class="form-control"
+                          id="livingroomCount"
+                          aria-describedby="livingroomCount"
+                          placeholder="Number of Living Room"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="bathroomCount">Number of Bath Rooms</label>
+                        <input
+                          ng-model="propertyData.noOfBathRoom"
+                          type="number"
+                          class="form-control"
+                          id="bathroomCount"
+                          aria-describedby="bathroomCount"
+                          placeholder="Number of Bath Room"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="sameTypeofRoom"
+                          >How many rooms with these same?</label
+                        >
+                        <input
+                          ng-model="propertyData.noOfRoom"
+                          type="number"
+                          class="form-control"
+                          id="sameTypeofRoom"
+                          aria-describedby="sameTypeofRoom"
+                          placeholder="Number of Room"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="guestCount"
+                          >How many guests can stay in this room?</label
+                        >
+                        <input
+                          ng-model="propertyData.noOfGuest"
+                          type="number"
+                          class="form-control"
+                          id="guestCount"
+                          aria-describedby="guestCount"
+                          placeholder="Number of Guest"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="RoomSize">Room size</label>
+                        <input
+                          ng-model="propertyData.roomSize"
+                          type="text"
+                          class="form-control"
+                          id="RoomSize"
+                          aria-describedby="RoomSize"
+                          placeholder="Room Size"
+                        />
+                      </div>
+
+                      <div class="form-group">
+                        <label for="roomLowerRate"
+                          >Do you offer a lower rate when there is less than
+                          guest?</label
+                        >
+                        <select
+                          class="form-control"
+                          ng-model="propertyData.haveLowerRateForGuest"
+                          required
+                        >
+                          <option value="">Please Select</option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="border border-primary rounded p-3 mt-3">
+                      <p
+                        class="d-inline-block font-weight-bold mb-3"
+                        for="RoomInfo"
+                      >
+                        Bed Options
+                      </p>
+                      <small>
+                        (Tell us only about the existing beds in a room (don't
+                        include extra beds))</small
+                      >
+                      <div class="form-group">
+                        <label for="bedType"
+                          >What kind of beds are available in this room?</label
+                        >
+                        <input
+                          ng-model="propertyData.typeOfBed"
+                          type="text"
+                          class="form-control"
+                          id="bedType"
+                          aria-describedby="bedType"
+                          placeholder="Type of Bed"
+                          required
+                        />
+                      </div>
+                    </div>
+                  </div>
+                  <div class="border border-primary rounded p-3 mt-3">
+                    <h5>Facilities & Services</h5>
+                    <hr />
+                    <div class="border border-primary rounded p-3">
+                      <p class="d-inline-block font-weight-bold" for="Parking">
+                        Parking
+                      </p>
+                      <small>
+                        (This information is especially important for those
+                        traveling to your property by car)</small
+                      >
+                      <div class="form-group">
+                        <label for="parkingAvailibility"
+                          >Is parking available to guests?</label
+                        >
+                        <select
+                          class="form-control"
+                          ng-model="propertyData.haveParking"
+                          required
+                        >
+                          <option value="">Select</option>
+                          <option value="No">No</option>
+                          <option value="Yes, Paid">Yes, Paid</option>
+                          <option value="Yes, Free">Yes, Free</option>
+                        </select>
+                      </div>
+                      <div
+                        ng-if="propertyData.haveParking==='Yes, Paid' || propertyData.haveParking==='Yes, Free'"
+                      >
+                        <div class="form-group">
+                          <label for="parkingPlace">Public/Private</label>
+                          <select
+                            class="form-control"
+                            ng-model="propertyData.parkingTypeOne"
+                            required
+                          >
+                            <option value="">Select</option>
+                            <option value="Public">Public</option>
+                            <option value="Private">Private</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="parkingSite">On Site/Off Site</label>
+                          <select
+                            class="form-control"
+                            ng-model="propertyData.parkingTypeTwo"
+                            required
+                          >
+                            <option value="">Select</option>
+                            <option value="On Site">On Site</option>
+                            <option value="Off Site">Off Site</option>
+                          </select>
+                        </div>
+                        <div class="form-group">
+                          <label for="parkingReservation"
+                            >Do guests need to reserve a parking space?</label
+                          >
+                          <select
+                            class="form-control"
+                            ng-model="propertyData.needParkingReservation"
+                            required
+                          >
+                            <option value="">Select</option>
+                            <option value="Reservation needed">
+                              Reservation needed
+                            </option>
+                            <option value="No reservation needed">
+                              No reservation needed
+                            </option>
+                          </select>
+                        </div>
+                        <div
+                          ng-if="propertyData.haveParking==='Yes, Paid'"
+                          class="form-group"
+                        >
+                          <label for="parkingCost"
+                            >Price for parking (per day)</label
+                          >
+                          <input
+                            ng-model="propertyData.parkingPricePerDay"
+                            type="text"
+                            class="form-control"
+                            id="parkingCost"
+                            aria-describedby="parkingCost"
+                            placeholder="Cost/Day"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="border border-primary rounded p-3 mt-3">
+                      <div class="d-flex justify-content-between">
+                        <p class="font-weight-bold" for="meal">Meal</p>
+                        <div
+                          ng-if="propertyData.mealData.length<3"
+                          ng-click="pushMealData();"
+                          class="btn btn-success cursor-pointer"
+                          style="cursor: pointer"
+                        >
+                          Add more
+                        </div>
+                      </div>
+                      <div
+                        ng-repeat="meal in propertyData.mealData"
+                        class="border border-primary rounded p-3 mt-3"
+                      >
+                        <div class="d-flex justify-content-between">
+                          <p>#{{$index+1}}</p>
+                          <div
+                            ng-if="$index!=0"
+                            ng-click="propertyData.mealData.splice($index)"
+                            class="btn btn-danger cursor-pointer"
+                            style="cursor: pointer"
+                          >
+                            Remove
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label for="mealTime"
+                            >Which Meal available to guests?</label
+                          >
+                          <select
+                            class="form-control"
+                            ng-model="meal.mealName"
+                            required
+                          >
+                            <option value="">Select</option>
+                            <option value="Breakfast">Breakfast</option>
+                            <option value="Lunch">Lunch</option>
+                            <option value="Dinner">Dinner</option>
+                          </select>
+                        </div>
+                        <div ng-if="meal.mealName">
+                          <div class="form-group">
+                            <label for="mealOption"
+                              >Is {{meal.mealName}} available to guests?</label
+                            >
+                            <select
+                              class="form-control"
+                              ng-model="meal.isMealAvailable"
+                              required
+                            >
+                              <option value="">Select</option>
+                              <option value="No">No</option>
+                              <option value="Yes, included in the price">
+                                Yes, included in the price
+                              </option>
+                              <option value="Yes, optional">
+                                Yes, optional
+                              </option>
+                            </select>
+                          </div>
+                          <div
+                            ng-if="meal.isMealAvailable==='Yes, included in the price' || meal.isMealAvailable==='Yes, optional'"
+                            class="form-group"
+                          >
+                            <label for="mealType"
+                              >What kind of {{propertyData.mealName}} is
+                              available?</label
+                            >
+                            <select
+                              class="form-control"
+                              ng-model="meal.mealType"
+                              required
+                            >
+                              <option value="">Select</option>
+                              <option value="Continental">Continental</option>
+                              <option value="American">American</option>
+                              <option value="Buffet">Buffet</option>
+                              <option value="Italian">Italian</option>
+                              <option value="Full English">Full English</option>
+                              <option value="Vegetarian">Vegetarian</option>
+                              <option value="Vegan">Vegan</option>
+                              <option value="Halal">Halal</option>
+                              <option value="Asian">Asian</option>
+                            </select>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="border border-primary rounded p-3 mt-3">
+                      <p class="font-weight-bold" for="language">
+                        Languages Spoken
+                      </p>
+                      <div class="form-group">
+                        <label for="staffLanguage"
+                          >What languages do you or your staff speak?</label
+                        >
+                        <input
+                          ng-model="propertyData.speakingLanguage"
+                          type="text"
+                          class="form-control"
+                          id="staffLanguage"
+                          aria-describedby="staffLanguage"
+                          placeholder="Languages"
+                          required
+                        />
+                      </div>
+                    </div>
+                    <div class="border border-primary rounded p-3 mt-3">
+                      <div class="mb-3">
+                        <p
+                          class="d-inline-block font-weight-bold mb-0"
+                          for="Facilities"
+                        >
+                          Facilities That Are Popular With Guests
+                        </p>
+                        <small>
+                          (Guests look for these facilities the most when
+                          they’re searching for properties.)</small
+                        >
+                      </div>
+                      <div class="form-group">
+                        <div
+                          ng-repeat="popFaci in propertyData.popularFacilities"
+                          ng-if="popFaci.value"
+                          ng-click="populateMultipleInput('popularFacilities', $index)"
+                          class="form-control btn-{{popFaci.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+                          style="cursor: pointer"
+                        >
+                          <i ng-if="popFaci.value" class="fas fa-check"></i>
+                          {{popFaci.name}}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="border border-primary rounded p-3 mt-3">
+                    <h5>Amenities</h5>
+                    <hr />
+                    <div class="border border-primary rounded p-3">
+                      <p
+                        class="d-inline-block font-weight-bold mb-3"
+                        for="bedOption"
+                      >
+                        Extra Bed Options
+                      </p>
+                      <small>
+                        (These are the options for beds that can be added upon
+                        request)</small
+                      >
+                      <div class="form-group">
+                        <label for="extaBed">Can you provide extra beds?</label>
+                        <select
+                          class="form-control"
+                          ng-model="propertyData.extraBed"
+                          required
+                        >
+                          <option value="">Select</option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                      </div>
+                      <div
+                        ng-if="propertyData.extraBed==='Yes'"
+                        class="form-group"
+                      >
+                        <label for="extaBedCount"
+                          >Select the number of extra beds that can be
+                          added</label
+                        >
+                        <select
+                          class="form-control"
+                          ng-model="propertyData.noOfExtraBed"
+                          required
+                        >
+                          <option value="">Select</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                          <option value="4">4</option>
+                        </select>
+                      </div>
+                      <!-- <p for="bedOption">Check the box(es) if you can accommodate the following guests in
+                                                    extra beds.</p>
+                                                <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                                        checked>
+                                                    <label class="form-check-label" for="flexCheckChecked">
+                                                        Children up to 2 years old in cribs
+                                                    </label>
+                                                </div> -->
+                      <div class="form-group">
+                        <label for="extraBedPriceInfant"
+                          >Enter the price per night, per infant up to 2 years
+                          old in cribs</label
+                        >
+                        <input
+                          ng-model="propertyData.babyExtraBedPriceOrNightOrBaby"
+                          type="number"
+                          class="form-control"
+                          id="extraBedPriceInfant"
+                          aria-describedby="extraBedPriceInfant"
+                          placeholder="Price"
+                        />
+                      </div>
+                      <!-- <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                                        checked>
+                                                    <label class="form-check-label" for="flexCheckChecked">
+                                                        Children
+                                                    </label>
+                                                </div> -->
+                      <div class="form-group">
+                        <label for="extraBedPriceChildCount"
+                          >Select age range for children</label
+                        >
+                        <select
+                          class="form-control"
+                          ng-model="propertyData.extraBedAgeRange"
+                        >
+                          <option value="">Select</option>
+                          <option value="Up to 6 years old">
+                            Up to 6 years old
+                          </option>
+                          <option value="Up to 12 years old">
+                            Up to 12 years old
+                          </option>
+                          <option value="Up to 16 years old">
+                            Up to 16 years old
+                          </option>
+                        </select>
+                      </div>
+                      <div
+                        ng-if="propertyData.extraBedAgeRange=='Up to 6 years old'"
+                        class="form-group"
+                      >
+                        <label for="extraBedPriceInfant2"
+                          >Enter the price per night, per children (upto 6
+                          years)</label
+                        >
+                        <input
+                          ng-model="propertyData.threeToSixExtraBedPriceOrNightOrChild"
+                          type="number"
+                          class="form-control"
+                          id="extraBedPriceInfant2"
+                          aria-describedby="extraBedPriceInfant2"
+                          placeholder="Price"
+                        />
+                      </div>
+                      <div
+                        ng-if="propertyData.extraBedAgeRange=='Up to 12 years old'"
+                        class="form-group"
+                      >
+                        <label for="extraBedPriceInfant2"
+                          >Enter the price per night, per children (upto 12
+                          years)</label
+                        >
+                        <input
+                          ng-model="propertyData.sevenToTwelveExtraBedPriceOrNightOrChild"
+                          type="number"
+                          class="form-control"
+                          id="extraBedPriceInfant2"
+                          aria-describedby="extraBedPriceInfant2"
+                          placeholder="Price"
+                        />
+                      </div>
+                      <div
+                        ng-if="propertyData.extraBedAgeRange=='Up to 16 years old'"
+                        class="form-group"
+                      >
+                        <label for="extraBedPriceInfant2"
+                          >Enter the price per night, per children (upto 16
+                          years)</label
+                        >
+                        <input
+                          ng-model="propertyData.thirteenToSixteenExtraBedPriceOrNightOrChild"
+                          type="number"
+                          class="form-control"
+                          id="extraBedPriceInfant2"
+                          aria-describedby="extraBedPriceInfant2"
+                          placeholder="Price"
+                        />
+                      </div>
+                      <!-- <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked"
+                                                        checked>
+                                                    <label class="form-check-label" for="flexCheckChecked">
+                                                        Adult
+                                                    </label>
+                                                </div> -->
+                      <div class="form-group">
+                        <label for="extraBedPriceAdult"
+                          >Enter the price per night, per adult</label
+                        >
+                        <input
+                          ng-model="propertyData.adultExtraBedPriceOrNightOrAdult"
+                          type="number"
+                          class="form-control"
+                          id="extraBedPriceAdult"
+                          aria-describedby="extraBedPriceAdult"
+                          placeholder="Price"
+                        />
+                      </div>
+                    </div>
+                    <div class="border border-primary rounded p-3 mt-3">
+                      <p
+                        class="d-inline-block font-weight-bold mb-3"
+                        for="Amenities2"
+                      >
+                        Amenities
+                      </p>
+                      <small> (Tell us about your amenities)</small>
+                      <div class="form-group">
+                        <div
+                          ng-repeat="amenity in propertyData.amenities"
+                          ng-if="amenity.value"
+                          ng-click="populateMultipleInput('amenities', $index)"
+                          class="form-control btn-{{amenity.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+                          style="cursor: pointer"
+                        >
+                          <i ng-if="amenity.value" class="fas fa-check"></i>
+                          {{amenity.name}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="border border-primary rounded p-3 mt-3">
+                      <p class="font-weight-bold" for="roomAmenities">
+                        Room amenities
+                      </p>
+                      <div class="form-group">
+                        <div
+                          ng-repeat="roomAmenity in propertyData.roomAmenities"
+                          ng-if="roomAmenity.value"
+                          ng-click="populateMultipleInput('roomAmenities', $index)"
+                          class="form-control btn-{{roomAmenity.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+                          style="cursor: pointer"
+                        >
+                          <i ng-if="roomAmenity.value" class="fas fa-check"></i>
+                          {{roomAmenity.name}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="border border-primary rounded p-3 mt-3">
+                      <p class="font-weight-bold" for="bathroom">
+                        Media & Technology
+                      </p>
+                      <div class="form-group">
+                        <div
+                          ng-repeat="mediaTechnology in propertyData.mediaTechnology"
+                          ng-if="mediaTechnology.value"
+                          ng-click="populateMultipleInput('mediaTechnology', $index)"
+                          class="form-control btn-{{mediaTechnology.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+                          style="cursor: pointer"
+                        >
+                          <i
+                            ng-if="mediaTechnology.value"
+                            class="fas fa-check"
+                          ></i>
+                          {{mediaTechnology.name}}
+                        </div>
+                      </div>
+                    </div>
+                    <div class="border border-primary rounded p-3 mt-3">
+                      <p class="font-weight-bold" for="bathroom">
+                        Services & Extras
+                      </p>
+                      <div
+                        ng-repeat="extraService in propertyData.extraServices"
+                        ng-if="extraService.value"
+                        ng-click="populateMultipleInput('extraServices', $index)"
+                        class="form-control btn-{{extraService.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+                        style="cursor: pointer"
+                      >
+                        <i ng-if="extraService.value" class="fas fa-check"></i>
+                        {{extraService.name}}
+                      </div>
+                    </div>
+                    <div class="border border-primary rounded p-3 mt-3">
+                      <p class="font-weight-bold" for="bathroom">
+                        Outdoor & View
+                      </p>
+                      <div
+                        ng-repeat="outdoorView in propertyData.outdoorView"
+                        ng-if="outdoorView.value"
+                        ng-click="populateMultipleInput('outdoorView', $index)"
+                        class="form-control btn-{{outdoorView.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+                        style="cursor: pointer"
+                      >
+                        <i ng-if="outdoorView.value" class="fas fa-check"></i>
+                        {{outdoorView.name}}
+                      </div>
+                    </div>
+                    <div class="border border-primary rounded p-3 mt-3">
+                      <p class="font-weight-bold" for="bathroom">
+                        Accessibility
+                      </p>
+                      <div
+                        ng-repeat="accessibility in propertyData.accessibility"
+                        ng-if="accessibility.value"
+                        ng-click="populateMultipleInput('accessibility', $index)"
+                        class="form-control btn-{{accessibility.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+                        style="cursor: pointer"
+                      >
+                        <i ng-if="accessibility.value" class="fas fa-check"></i>
+                        {{accessibility.name}}
+                      </div>
+                    </div>
+                    <div class="border border-primary rounded p-3 mt-3">
+                      <p class="font-weight-bold" for="bathroom">
+                        Entertainment and Family Services
+                      </p>
+                      <div
+                        ng-repeat="entertainmentAndFamilyService in propertyData.entertainmentAndFamilyServices"
+                        ng-if="entertainmentAndFamilyService.value"
+                        ng-click="populateMultipleInput('entertainmentAndFamilyServices', $index)"
+                        class="form-control btn-{{entertainmentAndFamilyService.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+                        style="cursor: pointer"
+                      >
+                        <i
+                          ng-if="entertainmentAndFamilyService.value"
+                          class="fas fa-check"
+                        ></i>
+                        {{entertainmentAndFamilyService.name}}
+                      </div>
+                    </div>
+                    <div class="border border-primary rounded p-3 mt-3">
+                      <p class="font-weight-bold" for="bathroom">Others</p>
+                      <div
+                        ng-repeat="otherFcility in propertyData.otherFacilities"
+                        ng-if="otherFcility.value"
+                        ng-click="populateMultipleInput('otherFacilities', $index)"
+                        class="form-control btn-{{otherFcility.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+                        style="cursor: pointer"
+                      >
+                        <i ng-if="otherFcility.value" class="fas fa-check"></i>
+                        {{otherFcility.name}}
+                      </div>
+                    </div>
+                  </div>
+                  <div class="border border-primary rounded p-3 mt-3">
+                    <h5 class="d-inline-block">Policies</h5>
+                    <small>
+                      (Specify some basic policies. Do you allow children or
+                      pets? How flexible are you with cancellations?)</small
+                    >
+                    <hr />
+                    <!-- <small>After you complete registration you'll be able to make changes to your listing before it goes live.</small> -->
+                    <div class="border border-primary rounded p-3">
+                      <p class="font-weight-bold">Cancellations</p>
+                      <div class="form-group">
+                        <label for="cancelationDay"
+                          >How many days in advance can guests cancel free of
+                          charge?</label
+                        >
+                        <input
+                          ng-model="propertyData.freeCancelDays"
+                          type="text"
+                          class="form-control"
+                          id="cancelationDay"
+                          aria-describedby="cancelationDay"
+                          placeholder="Days"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="cancelationFullFee"
+                          >Or guests will pay 100%</label
+                        >
+                        <input
+                          ng-model="propertyData.fullPayCencelDays"
+                          type="text"
+                          class="form-control"
+                          id="cancelationFullFee"
+                          aria-describedby="cancelationFullFee"
+                          placeholder="Days"
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="accidentalBooking"
+                          >Protect Against Accidental Bookings</label
+                        >
+                        <select
+                          class="form-control"
+                          ng-model="propertyData.protectAccidentalBookings"
+                          required
+                        >
+                          <option value="">Select</option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                        <small
+                          >To save you time handling accidental bookings, we
+                          automatically waive cancellation fees for guests who
+                          cancel within the first 24 hours of a booking being
+                          made. You can change this period of time later in your
+                          property management platform.</small
+                        >
+                      </div>
+                      <div class="form-group">
+                        <label for="checkIn">Check-In</label>
+                        <select
+                          class="form-control"
+                          ng-model="propertyData.checkInTime"
+                          required
+                        >
+                          <option value="">Select</option>
+                          <option value="12:00 AM">12:00 AM</option>
+                          <option value="1:00 AM">1:00 AM</option>
+                          <option value="2:00 AM">2:00 AM</option>
+                          <option value="3:00 AM">3:00 AM</option>
+                          <option value="4:00 AM">4:00 AM</option>
+                          <option value="5:00 AM">5:00 AM</option>
+                          <option value="6:00 AM">6:00 AM</option>
+                          <option value="7:00 AM">7:00 AM</option>
+                          <option value="8:00 AM">8:00 AM</option>
+                          <option value="9:00 AM">9:00 AM</option>
+                          <option value="10:00 AM">10:00 AM</option>
+                          <option value="11:00 AM">11:00 AM</option>
+                          <option value="12:00 PM">12:00 PM</option>
+                          <option value="1:00 PM">1:00 PM</option>
+                          <option value="2:00 PM">2:00 PM</option>
+                          <option value="3:00 PM">3:00 PM</option>
+                          <option value="4:00 PM">4:00 PM</option>
+                          <option value="5:00 PM">5:00 PM</option>
+                          <option value="6:00 PM">6:00 PM</option>
+                          <option value="7:00 PM">7:00 PM</option>
+                          <option value="8:00 PM">8:00 PM</option>
+                          <option value="9:00 PM">9:00 PM</option>
+                          <option value="10:00 PM">10:00 PM</option>
+                          <option value="11:00 PM">11:00 PM</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label for="checkOut">Check-Out</label>
+                        <select
+                          class="form-control"
+                          ng-model="propertyData.checkOutTime"
+                          required
+                        >
+                          <option value="">Select</option>
+                          <option value="12:00 AM">12:00 AM</option>
+                          <option value="1:00 AM">1:00 AM</option>
+                          <option value="2:00 AM">2:00 AM</option>
+                          <option value="3:00 AM">3:00 AM</option>
+                          <option value="4:00 AM">4:00 AM</option>
+                          <option value="5:00 AM">5:00 AM</option>
+                          <option value="6:00 AM">6:00 AM</option>
+                          <option value="7:00 AM">7:00 AM</option>
+                          <option value="8:00 AM">8:00 AM</option>
+                          <option value="9:00 AM">9:00 AM</option>
+                          <option value="10:00 AM">10:00 AM</option>
+                          <option value="11:00 AM">11:00 AM</option>
+                          <option value="12:00 PM">12:00 PM</option>
+                          <option value="1:00 PM">1:00 PM</option>
+                          <option value="2:00 PM">2:00 PM</option>
+                          <option value="3:00 PM">3:00 PM</option>
+                          <option value="4:00 PM">4:00 PM</option>
+                          <option value="5:00 PM">5:00 PM</option>
+                          <option value="6:00 PM">6:00 PM</option>
+                          <option value="7:00 PM">7:00 PM</option>
+                          <option value="8:00 PM">8:00 PM</option>
+                          <option value="9:00 PM">9:00 PM</option>
+                          <option value="10:00 PM">10:00 PM</option>
+                          <option value="11:00 PM">11:00 PM</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="border border-primary rounded p-3 mt-3">
+                      <p class="font-weight-bold">Children</p>
+                      <div class="form-group">
+                        <label for="childAccomodation"
+                          >Can you accommodate children?</label
+                        >
+                        <select
+                          class="form-control"
+                          ng-model="propertyData.childAccommodation"
+                          required
+                        >
+                          <option value="">Select</option>
+                          <option value="Yes">Yes</option>
+                          <option value="No">No</option>
+                        </select>
+                        <small>You can specify the ages and prices later</small>
+                      </div>
+                    </div>
+                    <div class="border border-primary rounded p-3 mt-3">
+                      <p class="d-inline-block font-weight-bold">Pets</p>
+                      <small>
+                        (Some guests like to travel with their furry friends.
+                        Indicate if you allow pets and if any charges
+                        apply)</small
+                      >
+                      <div class="form-group">
+                        <label for="petStatus">Do you allow pets?</label>
+                        <select
+                          class="form-control"
+                          ng-model="propertyData.petAllowed"
+                          required
+                        >
+                          <option value="">Select</option>
+                          <option value="No">No</option>
+                          <option value="Yes">Yes</option>
+                          <option value="Upon Request">Upon Request</option>
+                        </select>
+                      </div>
+                      <div
+                        ng-if="propertyData.petAllowed==='Yes' || propertyData.petAllowed==='Upon Request'"
+                        class="form-group"
+                      >
+                        <label for="petStatusIfYes"
+                          >Are there additional charges for pets?</label
+                        >
+                        <select
+                          class="form-control"
+                          ng-model="propertyData.hasPetCharge"
+                          required
+                        >
+                          <option value="">Select</option>
+                          <option value="Pets can stay for free">
+                            Pets can stay for free
+                          </option>
+                          <option value="Charges may apply">
+                            Charges may apply
+                          </option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="border border-primary rounded p-3 mt-3">
+                    <h5>Payments</h5>
+                    <hr />
+                    <div class="border border-primary rounded p-3 mt-3">
+                      <div class="mb-3">
+                        <p class="d-inline-block font-weight-bold mb-0">
+                          Guest Payment Options
+                        </p>
+                        <small>
+                          (Specify the payment types you accept, tax details,
+                          and other options like additional charges)</small
+                        >
+                      </div>
+                      <div class="form-group">
+                        <label for="cardPaymentStatus"
+                          >Can you charge credit cards at the property?</label
+                        >
+                        <select
+                          class="form-control"
+                          ng-model="propertyData.allowOnlinePayment"
+                          required
+                        >
+                          <option value="">Select</option>
+                          <option value="No">No</option>
+                          <option value="Yes">Yes</option>
+                        </select>
+                      </div>
+                      <div
+                        ng-if="propertyData.allowOnlinePayment==='Yes'"
+                        ng-repeat="list in propertyData.onlinePaymentList"
+                        ng-click="populateMultipleInput('onlinePaymentList', $index)"
+                        class="form-control btn-{{list.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+                        style="cursor: pointer"
+                      >
+                        <i ng-if="list.value" class="fas fa-check"></i>
+                        {{list.name}}
+                      </div>
+                    </div>
+                    <div class="form-group mt-3">
+                      <label for="Commission">Commission Percentage</label>
+                      <input
+                        ng-model="propertyData.commissionPercentage"
+                        type="number"
+                        class="form-control"
+                        id="Commission"
+                        aria-describedby="cancelationFullFee"
+                        placeholder="Input the Percentage"
+                        required
+                      />
+                    </div>
+                    <div class="form-group mt-3">
+                      <label for="Discount">Discount Percentage</label>
+                      <input
+                        ng-model="propertyData.discount"
+                        type="number"
+                        class="form-control"
+                        id="Discount"
+                        aria-describedby="cancelationFullFee"
+                        placeholder="Input the Percentage"
+                        required
+                      />
+                    </div>
+                    <!-- <div class="form-group">
+                      <label for="InvoiceName"
+                        >What name should be placed on the invoice (e.g.
+                        legal/company name)?</label
+                      >
+                      <input
+                        ng-model="propertyData.invoiceCompanyName"
+                        type="text"
+                        class="form-control"
+                        id="InvoiceName"
+                        aria-describedby="InvoiceName"
+                        placeholder="Name on invoice"
+                        required
+                      />
+                    </div> -->
+                    <!-- <div class="form-group">
+                      <label for="InvoiceAddress"
+                        >Does this recipient have the same address as your
+                        property?</label
+                      >
+                      <select
+                        ng-change="mapAddress();"
+                        class="form-control"
+                        ng-model="propertyData.sameInvoiceAddress"
+                        required
+                      >
+                        <option value="">Select</option>
+                        <option value="Yes">Yes</option>
+                        <option value="No">No</option>
+                      </select>
+                    </div> -->
+                    <!-- <div class="border border-primary rounded p-3">
+                      <p
+                        class="d-inline-block font-weight-bold"
+                        for="InvoicepartnerAddress"
+                      >
+                        Invoice Sending Street/Address
+                      </p>
+                      <div class="form-group">
+                        <label for="InvoicepartnerAddress"
+                          >Street Address</label
+                        >
+                        <input
+                          ng-model="propertyData.invoiceStreetAddress"
+                          type="text"
+                          class="form-control"
+                          id="InvoicepartnerAddress"
+                          aria-describedby="InvoicepartnerAddress"
+                          placeholder="Street"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="InvoicepartnerAddress2"
+                          >Address line 2</label
+                        >
+                        <input
+                          ng-model="propertyData.invoiceAddressLineTwo"
+                          type="text"
+                          class="form-control"
+                          id="InvoicepartnerAddress"
+                          aria-describedby="InvoicepartnerAddress2"
+                          placeholder="Street Line 2"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="InvoiceCountry">Country/Region</label>
+                        <input
+                          ng-model="propertyData.invoiceCountry"
+                          type="text"
+                          class="form-control"
+                          id="InvoiceCountry"
+                          aria-describedby="InvoiceCountry"
+                          placeholder="Country or Region"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="InvoiceCity">City</label>
+                        <input
+                          ng-model="propertyData.invoiceCity"
+                          type="text"
+                          class="form-control"
+                          id="InvoiceCity"
+                          aria-describedby="InvoiceCity"
+                          placeholder="City"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="InvoiceState">State</label>
+                        <input
+                          ng-model="propertyData.invoiceState"
+                          type="text"
+                          class="form-control"
+                          id="InvoiceState"
+                          aria-describedby="InvoiceState"
+                          placeholder="State"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="InvoiceZip">ZIP Code</label>
+                        <input
+                          ng-model="propertyData.invoiceZipCode"
+                          type="text"
+                          class="form-control"
+                          id="InvoiceZip"
+                          aria-describedby="InvoiceZip"
+                          placeholder="ZIP Code"
+                          required
+                        />
+                      </div>
+                      <div class="form-group">
+                        <label for="latLng">Map Location</label>
+                        <div
+                          ng-click="getMapLocation();"
+                          class="btn btn-primary mb-2"
+                          style="cursor: pointer"
+                        >
+                          Get Map Location
+                        </div>
+                        <input
+                          ng-model="propertyData.lat"
+                          type="text"
+                          class="form-control mb-2"
+                          id="lat"
+                          aria-describedby="lat"
+                          placeholder="Latitude"
+                          required
+                        />
+                        <input
+                          ng-model="propertyData.lng"
+                          type="text"
+                          class="form-control"
+                          id="lng"
+                          aria-describedby="lng"
+                          placeholder="Longitude"
+                          required
+                        />
+                      </div>
+                    </div> -->
+                    <div class="mt-3" class="form-group">
+                      <label for="CommissionSettelement"
+                        >How your commission works for you!</label
+                      >
+                      <textarea
+                        ng-model="propertyData.howCommissionWorks"
+                        type="text"
+                        class="form-control"
+                        id="CommissionSettelement"
+                        aria-describedby="CommissionSettelement"
+                        placeholder="Describe the Commission Terms and Condition"
+                        required
+                      ></textarea>
+                    </div>
+                  </div>
+                  <div class="border border-primary rounded p-3 mt-3">
+                    <h5>Photo Gallery</h5>
+                    <hr />
+                    <div
+                      ng-if="propertyModalBtnTxt!=='Details'"
+                      class="form-group"
+                    >
+                      <label
+                        >Please upload the image one by one for multiple
+                        images</label
+                      >
+                      <input
+                        id="uploadedFile"
+                        onchange="angular.element(this).scope().uploadPicture();"
+                        ng-model="uploadedFile"
+                        type="file"
+                        class="form-control-file"
+                        id="exampleFormControlFile1"
+                        accept="image/*"
+                      />
+                    </div>
+                    <div
+                      ng-if="uploadMsg"
+                      class="alert alert-danger"
+                      role="alert"
+                    >
+                      {{uploadMsg}}
+                    </div>
+                    <div class="row" id="photoGallery">
+                      <div
+                        ng-repeat="image in propertyData.images track by $index"
+                        class="col-md-4"
+                      >
+                        <div class="d-flex justify-content-start">
+                          <img
+                            src="{{image.url}}"
+                            alt=""
+                            class="img-thumbnail mb-2"
+                          />
+                          <i
+                            ng-click="propertyData.images.splice($index, 1);"
+                            ng-if="propertyModalBtnTxt!=='Details'"
+                            class="fas fa-minus-circle text-danger ml-1"
+                            style="cursor: pointer"
+                          ></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <!-- <p class="mt-3">Your availability to guests</p> -->
+                  <div ng-if="propertyModalBtnTxt==='Add'">
+                    <small class="d-inline-block mt-3"
+                      >To help you start earning, we automatically open your
+                      property for bookings for the next 18 months.</small
+                    >
+                    <p class="mb-1 mt-2">
+                      To complete your registration, check the boxes below:
+                    </p>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="flexCheckChecked1"
+                        required
+                      />
+                      <label class="form-check-label" for="flexCheckChecked1">
+                        I certify that this is a legitimate accommodation
+                        business with all necessary licenses and permits, which
+                        can be shown upon first request. navigatortourism.com
+                        B.V. reserves the right to verify and investigate any
+                        details provided in this registration.
+                      </label>
+                    </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="checkbox"
+                        value=""
+                        id="flexCheckChecked2"
+                        required
+                      />
+                      <label class="form-check-label" for="flexCheckChecked2">
+                        I have read, accepted, and agreed to the
+                        <a target="_blank" href="/content/terms.html"
+                          >General Delivery Terms</a
+                        >
+                        and
+                        <a target="_blank" href="/content/privacy.html"
+                          >Privacy Statement</a
+                        >.
+                      </label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              ng-click="clearModal()"
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button
+              ng-if="propertyModalBtnTxt!='Details'"
+              type="submit"
+              class="btn btn-primary"
+            >
+              {{propertyModalBtnTxt}}
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <div
+    class="modal fade"
+    id="deleteModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5
+            class="modal-title"
+            id="exampleModalLongTitle"
+            style="color: #ffc107"
+          >
+            Warning
+          </h5>
+          <button
+            type="button"
+            class="close"
+            data-dismiss="modal"
+            aria-label="Close"
+          >
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container-fluid">
+            <div class="row">
+              <div class="col-md-12">Do you want to delete?</div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">
+            No
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            ng-click="deleteProperty('delete', '')"
+          >
+            Yes
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal -->
+  <!-- <div class="modal fade" id="invoiceModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">All Invoices of {{suppNameInModal}}</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="table-responsive">
+                                    <table class="table">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Invoice No.</th>
+                                                <th scope="col">Name</th>
+                                                <th scope="col">Quantity</th>
+                                                <th scope="col">Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="invoice in allInvoices">
+                                                <td>{{invoice.invoiceNo}}</td>
+                                                <td>{{invoice.rawMaterialName}}</td>
+                                                <td>{{invoice.quantity}} {{invoice.unit}}</td>
+                                                <td>{{invoice.creationDate | date : "dd MMM yyyy hh:mm:ss a"}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+
+  <!-- Modal -->
+  <!-- <div class="modal fade" id="filterModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Filter</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="fromDate">From</label>
+                                        <input ng-change="doFilter('apply')" ng-model="fromDate" type="date"
+                                            class="form-control" id="fromDate" aria-describedby="nameHelp"
+                                            placeholder="Enter From date">
+                                        <small ng-if="fromDateEmpty==1" style="color: #DC3545!important;" id="emailHelp"
+                                            class="form-text text-muted">From date
+                                            can't be empty</small>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="col-md-6">
+                                <form>
+                                    <div class="form-group">
+                                        <label for="toDate">To</label>
+                                        <input ng-change="doFilter('apply')" ng-model="toDate" type="date"
+                                            class="form-control" id="toDate" aria-describedby="nameHelp"
+                                            placeholder="Enter To date">
+                                        <small ng-if="toDateEmpty==1" style="color: #DC3545!important;" id="emailHelp"
+                                            class="form-text text-muted">To date
+                                            can't be empty</small>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-danger" ng-click="doFilter('finalApply')">Apply</button>
+                </div>
+            </div>
+        </div>
+    </div> -->
+</div>

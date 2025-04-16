@@ -1,0 +1,402 @@
+<form ng-controller="propertiesController" ng-submit="addAlldetails(modeName)">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 text-right">
+        <button
+          type="submit"
+          class="btn btn-{{modeName=='Save'?'success':'warning'}} my-2"
+        >
+          <span ng-if="!propertySaveLoading"
+            ><i
+              class="{{modeName=='Save'?'fas fa-save':'fas
+            fa-edit'}}"
+            ></i>
+            {{modeName}}</span
+          >
+          <i
+            ng-if="propertySaveLoading"
+            class="fa fa-spinner text-white"
+            aria-hidden="true"
+          ></i>
+        </button>
+      </div>
+    </div>
+    <div class="row scrolling-div-y">
+      <div class="col-md-12">
+        <div
+          ng-if="propertyModalBtnTxt=='Add'"
+          class="alert alert-info"
+          role="alert"
+        >
+          Start by telling us your property's name, contact details, and
+          address. After adding you'll be able to make changes to your property
+          before it goes live.
+        </div>
+        <div class="border border-primary rounded p-3">
+          <h5>Basic Info</h5>
+          <hr />
+          <div class="form-group">
+            <label for="inputName">What's the name of your property?</label>
+            <input
+              ng-model="propertyData.name"
+              type="text"
+              class="form-control"
+              id="propertyName"
+              aria-describedby="propertyName"
+              placeholder="Enter property name"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="inputRating">Star Rating</label>
+            <select
+              id="select-option"
+              class="form-control"
+              ng-model="propertyData.rating"
+              disabled
+              required
+            >
+              <option value="">Select</option>
+              <option value="N/A">N/A</option>
+              <option value="1">1 ✯</option>
+              <option value="2">2 ✯✯</option>
+              <option value="3">3 ✯✯✯</option>
+              <option value="4">4 ✯✯✯✯</option>
+              <option value="5">5 ✯✯✯✯✯</option>
+            </select>
+          </div>
+          <div class="border border-primary rounded p-3 mt-3">
+            <p class="font-weight-bold" for="partnerName">
+              Where's your property located?
+            </p>
+            <div class="form-group">
+              <label for="propertyAddressStreet2">Address</label>
+              <input
+                ng-model="propertyData.address"
+                type="text"
+                class="form-control"
+                id="propertyAddressStreet2"
+                aria-describedby="propertyAddressStreet2"
+                placeholder="Enter your address"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="latLng">Map Location</label>
+              <div
+                ng-click="getMapLocation();"
+                class="btn btn-primary mb-2"
+                style="cursor: pointer"
+              >
+                Get Map Location
+              </div>
+              <input
+                ng-model="propertyData.lat"
+                type="text"
+                class="form-control mb-2"
+                id="lat"
+                aria-describedby="lat"
+                placeholder="Latitude"
+                required
+              />
+              <input
+                ng-model="propertyData.lng"
+                type="text"
+                class="form-control"
+                id="lng"
+                aria-describedby="lng"
+                placeholder="Longitude"
+                required
+              />
+            </div>
+          </div>
+        </div>
+        <div class="border border-primary rounded p-3 mt-3">
+          <h5>Top {{topTenTagsCount}}/10 Facilities</h5>
+          <div class="border border-primary rounded p-3 mt-3">
+            <div class="form-group">
+              <div
+                ng-repeat="tag in propertyData.topTenTags"
+                ng-click="isClickEnable || populateMultipleInput('topTenTags', $index)"
+                class="not-allowed form-control btn-{{tag.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+              >
+                <i ng-if="tag.value" class="fas fa-check"></i>
+                {{tag.name}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="border border-primary rounded p-3 mt-3">
+          <h5>Facilities & Services</h5>
+          <div class="border border-primary rounded p-3 mt-3">
+            <div class="mb-3">
+              <p class="d-inline-block font-weight-bold mb-0" for="Facilities">
+                Facilities That Are Popular With Guests
+              </p>
+              <small>
+                (Guests look for these facilities the most when they’re
+                searching for properties.)</small
+              >
+            </div>
+            <div class="form-group">
+              <div
+                ng-repeat="popFaci in propertyData.popularFacilities"
+                ng-click="isClickEnable || populateMultipleInput('popularFacilities', $index)"
+                class="not-allowed form-control btn-{{popFaci.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+              >
+                <i ng-if="popFaci.value" class="fas fa-check"></i>
+                {{popFaci.name}}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="border border-primary rounded p-3 mt-3">
+          <h5>Amenities</h5>
+          <hr />
+          <div class="border border-primary rounded p-3 mt-3">
+            <p class="d-inline-block font-weight-bold mb-3" for="Amenities2">
+              Amenities
+            </p>
+            <small> (Tell us about your amenities)</small>
+            <div class="form-group">
+              <div
+                ng-repeat="amenity in propertyData.amenities"
+                ng-click="isClickEnable || populateMultipleInput('amenities', $index)"
+                class=" not-allowed form-control btn-{{amenity.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+              >
+                <i ng-if="amenity.value" class="fas fa-check"></i>
+                {{amenity.name}}
+              </div>
+            </div>
+          </div>
+          <div class="border border-primary rounded p-3 mt-3">
+            <p class="font-weight-bold" for="roomAmenities">Room amenities</p>
+            <div class="form-group">
+              <div
+                ng-repeat="roomAmenity in propertyData.roomAmenities"
+                ng-click="isClickEnable ||populateMultipleInput('roomAmenities', $index)"
+                class="not-allowed form-control btn-{{roomAmenity.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+              >
+                <i ng-if="roomAmenity.value" class="fas fa-check"></i>
+                {{roomAmenity.name}}
+              </div>
+            </div>
+          </div>
+          <div class="border border-primary rounded p-3 mt-3">
+            <p class="font-weight-bold" for="bathroom">Media & Technology</p>
+            <div class="form-group">
+              <div
+                ng-repeat="mediaTechnology in propertyData.mediaTechnology"
+                ng-click="isClickEnable || populateMultipleInput('mediaTechnology', $index)"
+                class="not-allowed form-control btn-{{mediaTechnology.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+              >
+                <i ng-if="mediaTechnology.value" class="fas fa-check"></i>
+                {{mediaTechnology.name}}
+              </div>
+            </div>
+          </div>
+          <div class="border border-primary rounded p-3 mt-3">
+            <p class="font-weight-bold" for="bathroom">Services & Extras</p>
+            <div
+              ng-repeat="extraService in propertyData.extraServices"
+              ng-click="isClickEnable || populateMultipleInput('extraServices', $index)"
+              class="not-allowed form-control btn-{{extraService.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+            >
+              <i ng-if="extraService.value" class="fas fa-check"></i>
+              {{extraService.name}}
+            </div>
+          </div>
+          <div class="border border-primary rounded p-3 mt-3">
+            <p class="font-weight-bold" for="bathroom">Outdoor & View</p>
+            <div
+              ng-repeat="outdoorView in propertyData.outdoorView"
+              ng-click="isClickEnable || populateMultipleInput('outdoorView', $index)"
+              class="not-allowed form-control btn-{{outdoorView.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+            >
+              <i ng-if="outdoorView.value" class="fas fa-check"></i>
+              {{outdoorView.name}}
+            </div>
+          </div>
+          <div class="border border-primary rounded p-3 mt-3">
+            <p class="font-weight-bold" for="bathroom">Accessibility</p>
+            <div
+              ng-repeat="accessibility in propertyData.accessibility"
+              ng-click="isClickEnable || populateMultipleInput('accessibility', $index)"
+              class="not-allowed form-control btn-{{accessibility.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+            >
+              <i ng-if="accessibility.value" class="fas fa-check"></i>
+              {{accessibility.name}}
+            </div>
+          </div>
+          <div class="border border-primary rounded p-3 mt-3">
+            <p class="font-weight-bold" for="bathroom">
+              Entertainment and Family Services
+            </p>
+            <div
+              ng-repeat="entertainmentAndFamilyService in propertyData.entertainmentAndFamilyServices"
+              ng-click="isClickEnable || populateMultipleInput('entertainmentAndFamilyServices', $index)"
+              class="not-allowed form-control btn-{{entertainmentAndFamilyService.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+              style="cursor: pointer"
+            >
+              <i
+                ng-if="entertainmentAndFamilyService.value"
+                class="fas fa-check"
+              ></i>
+              {{entertainmentAndFamilyService.name}}
+            </div>
+          </div>
+          <div class="border border-primary rounded p-3 mt-3">
+            <p class="font-weight-bold" for="bathroom">Others</p>
+            <div
+              ng-repeat="otherFcility in propertyData.otherFacilities"
+              ng-click="isClickEnable || populateMultipleInput('otherFacilities', $index)"
+              class="not-allowed form-control btn-{{otherFcility.value?'success':'light'}} w-50 d-inline-block mx-2 mb-2"
+            >
+              <i ng-if="otherFcility.value" class="fas fa-check"></i>
+              {{otherFcility.name}}
+            </div>
+          </div>
+        </div>
+
+        <div class="border border-primary rounded p-3 mt-3">
+          <h5>Thumbnail Image</h5>
+          <hr />
+          <div ng-if="propertyModalBtnTxt!=='Details'" class="form-group">
+            <label>Please upload only one image</label>
+            <input
+              id="uploadedFileThum"
+              onchange="angular.element(this).scope().uploadPictureThum();"
+              ng-model="uploadedFileThum"
+              type="file"
+              class="form-control-file"
+              id="exampleFormControlFile1"
+              accept="imaget/*"
+              disabled
+            />
+          </div>
+          <div ng-if="uploadMsg" class="alert alert-danger" role="alert">
+            {{uploadMsg}}
+          </div>
+          <div class="row" id="photoGallery">
+            <!-- ng-repeat="image in propertyData.images track by $index"  -->
+            <div
+              ng-repeat="imaget in propertyData.thumbnail track by $index"
+              class="col-md-4"
+            >
+              <div class="d-flex justify-content-start">
+                <img
+                  src="{{imaget.url}}"
+                  alt="missing url"
+                  class="img-thumbnail mb-2"
+                />
+                <i
+                  ng-click="propertyData.thumbnail.splice($index, 1);"
+                  ng-if="propertyModalBtnTxt!=='Details'"
+                  class="fas fa-minus-circle text-danger ml-1"
+                  style="cursor: pointer"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="border border-primary rounded p-3 mt-3">
+          <h5>Photo Gallery</h5>
+          <hr />
+          <div ng-if="propertyModalBtnTxt!=='Details'" class="form-group">
+            <label
+              >Please upload the image one by one for multiple images</label
+            >
+            <input
+              id="uploadedFile"
+              onchange="angular.element(this).scope().uploadPicture();"
+              ng-model="uploadedFile"
+              type="file"
+              class="form-control-file"
+              id="exampleFormControlFile1"
+              accept="image/*"
+              disabled
+            />
+          </div>
+          <div ng-if="uploadMsg" class="alert alert-danger" role="alert">
+            {{uploadMsg}}
+          </div>
+          <div class="row" id="photoGallery">
+            <div
+              ng-repeat="image in propertyData.images track by $index"
+              class="col-md-4"
+            >
+              <div class="d-flex justify-content-start">
+                <img src="{{image.url}}" alt="" class="img-thumbnail mb-2" />
+                <i
+                  ng-click="propertyData.images.splice($index, 1);"
+                  ng-if="propertyModalBtnTxt!=='Details'"
+                  class="fas fa-minus-circle text-danger ml-1"
+                  style="cursor: pointer"
+                ></i>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <p class="mt-3">Your availability to guests</p> -->
+        <div ng-if="propertyModalBtnTxt==='Add'">
+          <small class="d-inline-block mt-3"
+            >To help you start earning, we automatically open your property for
+            bookings for the next 18 months.</small
+          >
+          <p class="mb-1 mt-2">
+            To complete your registration, check the boxes below:
+          </p>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckChecked1"
+              required
+            />
+            <label class="form-check-label" for="flexCheckChecked1">
+              I certify that this is a legitimate accommodation business with
+              all necessary licenses and permits, which can be shown upon first
+              request. navigatortourism.com B.V. reserves the right to verify
+              and investigate any details provided in this registration.
+            </label>
+          </div>
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value=""
+              id="flexCheckChecked2"
+              required
+            />
+            <label class="form-check-label" for="flexCheckChecked2">
+              I have read, accepted, and agreed to the
+              <a target="_blank" href="/content/terms.html"
+                >General Delivery Terms</a
+              >
+              and
+              <a target="_blank" href="/content/privacy.html"
+                >Privacy Statement</a
+              >.
+            </label>
+          </div>
+        </div>
+        <!-- <div
+          ng-if="propertyLoading == 1"
+          class="alert alert-warning mt-3"
+          role="alert"
+        >
+          Saving..
+        </div> -->
+        <div
+          ng-if="propertysuceess"
+          class="alert alert-success mt-3"
+          role="alert"
+        >
+          Save Successfully
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

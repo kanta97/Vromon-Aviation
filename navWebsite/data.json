@@ -1,0 +1,1612 @@
+{
+    "groupedItineraryResponse": {
+        "version": "6.6.2",
+        "messages": [
+            {
+                "severity": "Info",
+                "type": "SERVER",
+                "code": "GCC14-ISELL-TN-00-2022-12-00-C7GX",
+                "text": "27039"
+            },
+            {
+                "severity": "Info",
+                "type": "WORKERTHREAD",
+                "code": "TRANSACTIONID",
+                "text": "364961165495234669"
+            },
+            {
+                "severity": "Info",
+                "type": "DRE",
+                "code": "RULEID",
+                "text": "15852"
+            },
+            {
+                "severity": "Info",
+                "type": "DEFAULT",
+                "code": "RULEID",
+                "text": "17500"
+            }
+        ],
+        "statistics": {
+            "itineraryCount": 7
+        },
+        "scheduleDescs": [
+            {
+                "id": 1,
+                "frequency": "*MTW*F*",
+                "stopCount": 0,
+                "eTicketable": true,
+                "totalMilesFlown": 124,
+                "elapsedTime": 50,
+                "departure": {
+                    "airport": "DAC",
+                    "city": "DAC",
+                    "country": "BD",
+                    "time": "10:20:00+06:00",
+                    "terminal": "D"
+                },
+                "arrival": {
+                    "airport": "ZYL",
+                    "city": "ZYL",
+                    "country": "BD",
+                    "time": "11:10:00+06:00"
+                },
+                "carrier": {
+                    "marketing": "BS",
+                    "marketingFlightNumber": 533,
+                    "operating": "BS",
+                    "operatingFlightNumber": 533,
+                    "equipment": {
+                        "code": "AT7",
+                        "typeForFirstLeg": "N",
+                        "typeForLastLeg": "N"
+                    }
+                }
+            },
+            {
+                "id": 2,
+                "frequency": "SMTWTFS",
+                "stopCount": 0,
+                "eTicketable": true,
+                "totalMilesFlown": 124,
+                "elapsedTime": 50,
+                "departure": {
+                    "airport": "DAC",
+                    "city": "DAC",
+                    "country": "BD",
+                    "time": "19:30:00+06:00",
+                    "terminal": "D"
+                },
+                "arrival": {
+                    "airport": "ZYL",
+                    "city": "ZYL",
+                    "country": "BD",
+                    "time": "20:20:00+06:00"
+                },
+                "carrier": {
+                    "marketing": "BS",
+                    "marketingFlightNumber": 537,
+                    "operating": "BS",
+                    "operatingFlightNumber": 537,
+                    "equipment": {
+                        "code": "AT7",
+                        "typeForFirstLeg": "N",
+                        "typeForLastLeg": "N"
+                    }
+                }
+            },
+            {
+                "id": 3,
+                "frequency": "***W***",
+                "stopCount": 0,
+                "eTicketable": true,
+                "totalMilesFlown": 124,
+                "elapsedTime": 50,
+                "departure": {
+                    "airport": "DAC",
+                    "city": "DAC",
+                    "country": "BD",
+                    "time": "07:40:00+06:00",
+                    "terminal": "D"
+                },
+                "arrival": {
+                    "airport": "ZYL",
+                    "city": "ZYL",
+                    "country": "BD",
+                    "time": "08:30:00+06:00"
+                },
+                "carrier": {
+                    "marketing": "BS",
+                    "marketingFlightNumber": 531,
+                    "operating": "BS",
+                    "operatingFlightNumber": 531,
+                    "equipment": {
+                        "code": "AT7",
+                        "typeForFirstLeg": "N",
+                        "typeForLastLeg": "N"
+                    }
+                }
+            },
+            {
+                "id": 4,
+                "frequency": "SMTWTFS",
+                "stopCount": 0,
+                "eTicketable": true,
+                "totalMilesFlown": 124,
+                "elapsedTime": 55,
+                "departure": {
+                    "airport": "DAC",
+                    "city": "DAC",
+                    "country": "BD",
+                    "time": "21:00:00+06:00"
+                },
+                "arrival": {
+                    "airport": "ZYL",
+                    "city": "ZYL",
+                    "country": "BD",
+                    "time": "21:55:00+06:00"
+                },
+                "carrier": {
+                    "marketing": "BG",
+                    "marketingFlightNumber": 605,
+                    "operating": "BG",
+                    "operatingFlightNumber": 605,
+                    "equipment": {
+                        "code": "DH8",
+                        "typeForFirstLeg": "N",
+                        "typeForLastLeg": "N"
+                    }
+                }
+            },
+            {
+                "id": 5,
+                "frequency": "***W***",
+                "stopCount": 0,
+                "eTicketable": true,
+                "totalMilesFlown": 124,
+                "elapsedTime": 50,
+                "departure": {
+                    "airport": "DAC",
+                    "city": "DAC",
+                    "country": "BD",
+                    "time": "13:35:00+06:00",
+                    "terminal": "D"
+                },
+                "arrival": {
+                    "airport": "ZYL",
+                    "city": "ZYL",
+                    "country": "BD",
+                    "time": "14:25:00+06:00"
+                },
+                "carrier": {
+                    "marketing": "BS",
+                    "marketingFlightNumber": 535,
+                    "operating": "BS",
+                    "operatingFlightNumber": 535,
+                    "equipment": {
+                        "code": "AT7",
+                        "typeForFirstLeg": "N",
+                        "typeForLastLeg": "N"
+                    }
+                }
+            },
+            {
+                "id": 6,
+                "frequency": "**TWT**",
+                "stopCount": 0,
+                "eTicketable": true,
+                "totalMilesFlown": 124,
+                "elapsedTime": 55,
+                "departure": {
+                    "airport": "DAC",
+                    "city": "DAC",
+                    "country": "BD",
+                    "time": "15:00:00+06:00"
+                },
+                "arrival": {
+                    "airport": "ZYL",
+                    "city": "ZYL",
+                    "country": "BD",
+                    "time": "15:55:00+06:00"
+                },
+                "carrier": {
+                    "marketing": "BG",
+                    "marketingFlightNumber": 603,
+                    "operating": "BG",
+                    "operatingFlightNumber": 603,
+                    "equipment": {
+                        "code": "DH8",
+                        "typeForFirstLeg": "N",
+                        "typeForLastLeg": "N"
+                    }
+                }
+            },
+            {
+                "id": 7,
+                "frequency": "***W***",
+                "stopCount": 0,
+                "eTicketable": true,
+                "totalMilesFlown": 124,
+                "elapsedTime": 45,
+                "departure": {
+                    "airport": "DAC",
+                    "city": "DAC",
+                    "country": "BD",
+                    "time": "12:55:00+06:00"
+                },
+                "arrival": {
+                    "airport": "ZYL",
+                    "city": "ZYL",
+                    "country": "BD",
+                    "time": "13:40:00+06:00"
+                },
+                "carrier": {
+                    "marketing": "BG",
+                    "marketingFlightNumber": 601,
+                    "operating": "BG",
+                    "operatingFlightNumber": 601,
+                    "equipment": {
+                        "code": "738",
+                        "typeForFirstLeg": "N",
+                        "typeForLastLeg": "N"
+                    }
+                }
+            }
+        ],
+        "taxDescs": [
+            {
+                "id": 1,
+                "code": "P7",
+                "amount": 100,
+                "currency": "BDT",
+                "description": "AIRPORT DEVELOPMENT FEE",
+                "publishedAmount": 100,
+                "publishedCurrency": "BDT",
+                "station": "DAC",
+                "country": "BD"
+            },
+            {
+                "id": 2,
+                "code": "P8",
+                "amount": 70,
+                "currency": "BDT",
+                "description": "PASSENGER SECURITY FEE",
+                "publishedAmount": 70,
+                "publishedCurrency": "BDT",
+                "station": "DAC",
+                "country": "BD"
+            },
+            {
+                "id": 3,
+                "code": "BD",
+                "amount": 25,
+                "currency": "BDT",
+                "description": "EMBARKATION FEE",
+                "publishedAmount": 25,
+                "publishedCurrency": "BDT",
+                "station": "DAC",
+                "country": "BD"
+            },
+            {
+                "id": 4,
+                "code": "OW2",
+                "amount": 500,
+                "currency": "BDT",
+                "description": "DOMESTIC AND INTERNATIONAL EXCISE DUTY TAX",
+                "publishedAmount": 500,
+                "publishedCurrency": "BDT",
+                "station": "DAC",
+                "country": "BD"
+            },
+            {
+                "id": 5,
+                "code": "E5",
+                "amount": 30,
+                "currency": "BDT",
+                "description": "VALUE ADDED TAX",
+                "publishedAmount": 30,
+                "publishedCurrency": "BDT",
+                "station": "DAC",
+                "country": "BD"
+            }
+        ],
+        "taxSummaryDescs": [
+            {
+                "id": 1,
+                "code": "P7",
+                "amount": 100,
+                "currency": "BDT",
+                "description": "AIRPORT DEVELOPMENT FEE",
+                "publishedAmount": 100,
+                "publishedCurrency": "BDT",
+                "station": "DAC",
+                "country": "BD"
+            },
+            {
+                "id": 2,
+                "code": "P8",
+                "amount": 70,
+                "currency": "BDT",
+                "description": "PASSENGER SECURITY FEE",
+                "publishedAmount": 70,
+                "publishedCurrency": "BDT",
+                "station": "DAC",
+                "country": "BD"
+            },
+            {
+                "id": 3,
+                "code": "BD",
+                "amount": 25,
+                "currency": "BDT",
+                "description": "EMBARKATION FEE",
+                "publishedAmount": 25,
+                "publishedCurrency": "BDT",
+                "station": "DAC",
+                "country": "BD"
+            },
+            {
+                "id": 4,
+                "code": "OW2",
+                "amount": 500,
+                "currency": "BDT",
+                "description": "DOMESTIC AND INTERNATIONAL EXCISE DUTY TAX",
+                "publishedAmount": 500,
+                "publishedCurrency": "BDT",
+                "station": "DAC",
+                "country": "BD"
+            },
+            {
+                "id": 5,
+                "code": "E5",
+                "amount": 30,
+                "currency": "BDT",
+                "description": "VALUE ADDED TAX",
+                "publishedAmount": 0.15,
+                "publishedCurrency": "BDT",
+                "station": "DAC",
+                "country": "BD"
+            }
+        ],
+        "fareComponentDescs": [
+            {
+                "id": 1,
+                "governingCarrier": "BG",
+                "fareAmount": 5275,
+                "fareCurrency": "BDT",
+                "fareBasisCode": "YDACFO",
+                "farePassengerType": "ADT",
+                "publishedFareAmount": 5275,
+                "oneWayFare": true,
+                "privateFare": true,
+                "directionality": "FROM",
+                "direction": "EH",
+                "notValidAfter": "2023-12-14",
+                "applicablePricingCategories": "3 4 5 7 10 15 16 18 23",
+                "vendorCode": "ATP",
+                "fareTypeBitmap": "08",
+                "fareType": "ER",
+                "fareTariff": "918",
+                "fareRule": "WDOM",
+                "cabinCode": "Y",
+                "segments": [
+                    {
+                        "segment": {}
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "governingCarrier": "BS",
+                "fareAmount": 3074,
+                "fareCurrency": "BDT",
+                "fareBasisCode": "KDOMOW",
+                "farePassengerType": "ADT",
+                "publishedFareAmount": 3074,
+                "oneWayFare": true,
+                "directionality": "FROM",
+                "direction": "EH",
+                "notValidAfter": "2023-12-14",
+                "applicablePricingCategories": "4 5 7 8 10 15 16 18",
+                "vendorCode": "ATP",
+                "fareTypeBitmap": "00",
+                "fareType": "SIP",
+                "fareTariff": "302",
+                "fareRule": "BD02",
+                "cabinCode": "Y",
+                "segments": [
+                    {
+                        "segment": {}
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "governingCarrier": "BG",
+                "fareAmount": 2770,
+                "fareCurrency": "BDT",
+                "fareBasisCode": "GDACFO",
+                "farePassengerType": "ADT",
+                "publishedFareAmount": 2770,
+                "oneWayFare": true,
+                "privateFare": true,
+                "directionality": "FROM",
+                "direction": "EH",
+                "notValidAfter": "2023-12-14",
+                "applicablePricingCategories": "3 4 5 7 10 15 16 18 23",
+                "vendorCode": "ATP",
+                "fareTypeBitmap": "08",
+                "fareType": "XOX",
+                "fareTariff": "918",
+                "fareRule": "WDOM",
+                "cabinCode": "Y",
+                "segments": [
+                    {
+                        "segment": {}
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "governingCarrier": "BG",
+                "fareAmount": 3375,
+                "fareCurrency": "BDT",
+                "fareBasisCode": "ODACFO",
+                "farePassengerType": "ADT",
+                "publishedFareAmount": 3375,
+                "oneWayFare": true,
+                "privateFare": true,
+                "directionality": "FROM",
+                "direction": "EH",
+                "notValidAfter": "2023-12-14",
+                "applicablePricingCategories": "3 4 5 7 10 15 16 18 23",
+                "vendorCode": "ATP",
+                "fareTypeBitmap": "08",
+                "fareType": "XOX",
+                "fareTariff": "918",
+                "fareRule": "WDOM",
+                "cabinCode": "Y",
+                "segments": [
+                    {
+                        "segment": {}
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "governingCarrier": "BS",
+                "fareAmount": 3774,
+                "fareCurrency": "BDT",
+                "fareBasisCode": "TDOMOW",
+                "farePassengerType": "ADT",
+                "publishedFareAmount": 3774,
+                "oneWayFare": true,
+                "directionality": "FROM",
+                "direction": "EH",
+                "notValidAfter": "2023-12-14",
+                "applicablePricingCategories": "4 5 7 8 10 15 16 18",
+                "vendorCode": "ATP",
+                "fareTypeBitmap": "00",
+                "fareType": "SIP",
+                "fareTariff": "302",
+                "fareRule": "BD02",
+                "cabinCode": "Y",
+                "segments": [
+                    {
+                        "segment": {}
+                    }
+                ]
+            }
+        ],
+        "baggageAllowanceDescs": [
+            {
+                "id": 1,
+                "weight": 20,
+                "unit": "kg"
+            },
+            {
+                "id": 2,
+                "weight": 20,
+                "unit": "kg"
+            }
+        ],
+        "legDescs": [
+            {
+                "id": 1,
+                "elapsedTime": 55,
+                "schedules": [
+                    {
+                        "ref": 4
+                    }
+                ]
+            },
+            {
+                "id": 2,
+                "elapsedTime": 45,
+                "schedules": [
+                    {
+                        "ref": 7
+                    }
+                ]
+            },
+            {
+                "id": 3,
+                "elapsedTime": 50,
+                "schedules": [
+                    {
+                        "ref": 5
+                    }
+                ]
+            },
+            {
+                "id": 4,
+                "elapsedTime": 55,
+                "schedules": [
+                    {
+                        "ref": 6
+                    }
+                ]
+            },
+            {
+                "id": 5,
+                "elapsedTime": 50,
+                "schedules": [
+                    {
+                        "ref": 2
+                    }
+                ]
+            },
+            {
+                "id": 6,
+                "elapsedTime": 50,
+                "schedules": [
+                    {
+                        "ref": 1
+                    }
+                ]
+            },
+            {
+                "id": 7,
+                "elapsedTime": 50,
+                "schedules": [
+                    {
+                        "ref": 3
+                    }
+                ]
+            }
+        ],
+        "itineraryGroups": [
+            {
+                "groupDescription": {
+                    "legDescriptions": [
+                        {
+                            "departureDate": "2022-12-14",
+                            "departureLocation": "DAC",
+                            "arrivalLocation": "ZYL"
+                        }
+                    ]
+                },
+                "itineraries": [
+                    {
+                        "id": 1,
+                        "pricingSource": "ADVJR1",
+                        "legs": [
+                            {
+                                "ref": 4
+                            }
+                        ],
+                        "pricingInformation": [
+                            {
+                                "pricingSubsource": "MIP",
+                                "fare": {
+                                    "validatingCarrierCode": "BG",
+                                    "vita": true,
+                                    "eTicketable": true,
+                                    "lastTicketDate": "2022-12-12",
+                                    "lastTicketTime": "22:40",
+                                    "governingCarriers": "BG",
+                                    "passengerInfoList": [
+                                        {
+                                            "passengerInfo": {
+                                                "passengerType": "ADT",
+                                                "passengerNumber": 1,
+                                                "nonRefundable": false,
+                                                "fareComponents": [
+                                                    {
+                                                        "ref": 3,
+                                                        "beginAirport": "DAC",
+                                                        "endAirport": "ZYL",
+                                                        "segments": [
+                                                            {
+                                                                "segment": {
+                                                                    "bookingCode": "G",
+                                                                    "cabinCode": "Y",
+                                                                    "mealCode": "S",
+                                                                    "seatsAvailable": 3,
+                                                                    "availabilityBreak": true,
+                                                                    "fareBreakPoint": true
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "taxes": [
+                                                    {
+                                                        "ref": 3
+                                                    },
+                                                    {
+                                                        "ref": 5
+                                                    },
+                                                    {
+                                                        "ref": 4
+                                                    },
+                                                    {
+                                                        "ref": 1
+                                                    },
+                                                    {
+                                                        "ref": 2
+                                                    }
+                                                ],
+                                                "taxSummaries": [
+                                                    {
+                                                        "ref": 3
+                                                    },
+                                                    {
+                                                        "ref": 4
+                                                    },
+                                                    {
+                                                        "ref": 5
+                                                    },
+                                                    {
+                                                        "ref": 1
+                                                    },
+                                                    {
+                                                        "ref": 2
+                                                    }
+                                                ],
+                                                "currencyConversion": {
+                                                    "from": "BDT",
+                                                    "to": "BDT",
+                                                    "exchangeRateUsed": 1
+                                                },
+                                                "fareMessages": [
+                                                    {
+                                                        "type": "N",
+                                                        "code": "0",
+                                                        "carrier": "BG",
+                                                        "info": "REPORTING 2 HRS B4 FLT DEP"
+                                                    },
+                                                    {
+                                                        "type": "W",
+                                                        "code": "0",
+                                                        "info": "PRIVATE FARE APPLIED - CHECK RULES FOR CORRECT TICKETING"
+                                                    },
+                                                    {
+                                                        "type": "W",
+                                                        "code": "0",
+                                                        "info": "VALIDATING CARRIER - BG"
+                                                    }
+                                                ],
+                                                "passengerTotalFare": {
+                                                    "totalFare": 3495,
+                                                    "totalTaxAmount": 725,
+                                                    "currency": "BDT",
+                                                    "baseFareAmount": 2770,
+                                                    "baseFareCurrency": "BDT",
+                                                    "equivalentAmount": 2770,
+                                                    "equivalentCurrency": "BDT",
+                                                    "constructionAmount": 2770,
+                                                    "constructionCurrency": "BDT",
+                                                    "commissionPercentage": 0,
+                                                    "commissionAmount": 0,
+                                                    "exchangeRateOne": 99.15
+                                                },
+                                                "baggageInformation": [
+                                                    {
+                                                        "provisionType": "A",
+                                                        "airlineCode": "BG",
+                                                        "segments": [
+                                                            {
+                                                                "id": 0
+                                                            }
+                                                        ],
+                                                        "allowance": {
+                                                            "ref": 1
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "totalFare": {
+                                        "totalPrice": 3495,
+                                        "totalTaxAmount": 725,
+                                        "currency": "BDT",
+                                        "baseFareAmount": 2770,
+                                        "baseFareCurrency": "BDT",
+                                        "constructionAmount": 2770,
+                                        "constructionCurrency": "BDT",
+                                        "equivalentAmount": 2770,
+                                        "equivalentCurrency": "BDT"
+                                    }
+                                }
+                            }
+                        ],
+                        "diversitySwapper": {
+                            "weighedPrice": 1620.409
+                        }
+                    },
+                    {
+                        "id": 2,
+                        "pricingSource": "ADVJR1",
+                        "legs": [
+                            {
+                                "ref": 6
+                            }
+                        ],
+                        "pricingInformation": [
+                            {
+                                "pricingSubsource": "MIP",
+                                "fare": {
+                                    "validatingCarrierCode": "BS",
+                                    "vita": true,
+                                    "eTicketable": true,
+                                    "lastTicketDate": "2022-12-12",
+                                    "lastTicketTime": "16:40",
+                                    "governingCarriers": "BS",
+                                    "passengerInfoList": [
+                                        {
+                                            "passengerInfo": {
+                                                "passengerType": "ADT",
+                                                "passengerNumber": 1,
+                                                "nonRefundable": false,
+                                                "fareComponents": [
+                                                    {
+                                                        "ref": 2,
+                                                        "beginAirport": "DAC",
+                                                        "endAirport": "ZYL",
+                                                        "segments": [
+                                                            {
+                                                                "segment": {
+                                                                    "bookingCode": "K",
+                                                                    "cabinCode": "Y",
+                                                                    "seatsAvailable": 9,
+                                                                    "availabilityBreak": true,
+                                                                    "fareBreakPoint": true
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "taxes": [
+                                                    {
+                                                        "ref": 3
+                                                    },
+                                                    {
+                                                        "ref": 5
+                                                    },
+                                                    {
+                                                        "ref": 4
+                                                    },
+                                                    {
+                                                        "ref": 1
+                                                    },
+                                                    {
+                                                        "ref": 2
+                                                    }
+                                                ],
+                                                "taxSummaries": [
+                                                    {
+                                                        "ref": 3
+                                                    },
+                                                    {
+                                                        "ref": 4
+                                                    },
+                                                    {
+                                                        "ref": 5
+                                                    },
+                                                    {
+                                                        "ref": 1
+                                                    },
+                                                    {
+                                                        "ref": 2
+                                                    }
+                                                ],
+                                                "currencyConversion": {
+                                                    "from": "BDT",
+                                                    "to": "BDT",
+                                                    "exchangeRateUsed": 1
+                                                },
+                                                "fareMessages": [
+                                                    {
+                                                        "type": "N",
+                                                        "code": "0",
+                                                        "carrier": "BS",
+                                                        "info": "NON-ENDORSABLE/REFUND/MODIFICATION SUBJECT TO/PENALTIES"
+                                                    },
+                                                    {
+                                                        "type": "W",
+                                                        "code": "0",
+                                                        "info": "VALIDATING CARRIER - BS"
+                                                    }
+                                                ],
+                                                "passengerTotalFare": {
+                                                    "totalFare": 3799,
+                                                    "totalTaxAmount": 725,
+                                                    "currency": "BDT",
+                                                    "baseFareAmount": 3074,
+                                                    "baseFareCurrency": "BDT",
+                                                    "equivalentAmount": 3074,
+                                                    "equivalentCurrency": "BDT",
+                                                    "constructionAmount": 3074,
+                                                    "constructionCurrency": "BDT",
+                                                    "commissionPercentage": 0,
+                                                    "commissionAmount": 0,
+                                                    "exchangeRateOne": 99.15
+                                                },
+                                                "baggageInformation": [
+                                                    {
+                                                        "provisionType": "A",
+                                                        "airlineCode": "BS",
+                                                        "segments": [
+                                                            {
+                                                                "id": 0
+                                                            }
+                                                        ],
+                                                        "allowance": {
+                                                            "ref": 2
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "totalFare": {
+                                        "totalPrice": 3799,
+                                        "totalTaxAmount": 725,
+                                        "currency": "BDT",
+                                        "baseFareAmount": 3074,
+                                        "baseFareCurrency": "BDT",
+                                        "constructionAmount": 3074,
+                                        "constructionCurrency": "BDT",
+                                        "equivalentAmount": 3074,
+                                        "equivalentCurrency": "BDT"
+                                    }
+                                }
+                            }
+                        ],
+                        "diversitySwapper": {
+                            "weighedPrice": 1481.61
+                        }
+                    },
+                    {
+                        "id": 3,
+                        "pricingSource": "ADVJR1",
+                        "legs": [
+                            {
+                                "ref": 5
+                            }
+                        ],
+                        "pricingInformation": [
+                            {
+                                "pricingSubsource": "MIP",
+                                "fare": {
+                                    "validatingCarrierCode": "BS",
+                                    "vita": true,
+                                    "eTicketable": true,
+                                    "lastTicketDate": "2022-12-12",
+                                    "lastTicketTime": "16:40",
+                                    "governingCarriers": "BS",
+                                    "passengerInfoList": [
+                                        {
+                                            "passengerInfo": {
+                                                "passengerType": "ADT",
+                                                "passengerNumber": 1,
+                                                "nonRefundable": false,
+                                                "fareComponents": [
+                                                    {
+                                                        "ref": 2,
+                                                        "beginAirport": "DAC",
+                                                        "endAirport": "ZYL",
+                                                        "segments": [
+                                                            {
+                                                                "segment": {
+                                                                    "bookingCode": "K",
+                                                                    "cabinCode": "Y",
+                                                                    "seatsAvailable": 9,
+                                                                    "availabilityBreak": true,
+                                                                    "fareBreakPoint": true
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "taxes": [
+                                                    {
+                                                        "ref": 3
+                                                    },
+                                                    {
+                                                        "ref": 5
+                                                    },
+                                                    {
+                                                        "ref": 4
+                                                    },
+                                                    {
+                                                        "ref": 1
+                                                    },
+                                                    {
+                                                        "ref": 2
+                                                    }
+                                                ],
+                                                "taxSummaries": [
+                                                    {
+                                                        "ref": 3
+                                                    },
+                                                    {
+                                                        "ref": 4
+                                                    },
+                                                    {
+                                                        "ref": 5
+                                                    },
+                                                    {
+                                                        "ref": 1
+                                                    },
+                                                    {
+                                                        "ref": 2
+                                                    }
+                                                ],
+                                                "currencyConversion": {
+                                                    "from": "BDT",
+                                                    "to": "BDT",
+                                                    "exchangeRateUsed": 1
+                                                },
+                                                "fareMessages": [
+                                                    {
+                                                        "type": "N",
+                                                        "code": "0",
+                                                        "carrier": "BS",
+                                                        "info": "NON-ENDORSABLE/REFUND/MODIFICATION SUBJECT TO/PENALTIES"
+                                                    },
+                                                    {
+                                                        "type": "W",
+                                                        "code": "0",
+                                                        "info": "VALIDATING CARRIER - BS"
+                                                    }
+                                                ],
+                                                "passengerTotalFare": {
+                                                    "totalFare": 3799,
+                                                    "totalTaxAmount": 725,
+                                                    "currency": "BDT",
+                                                    "baseFareAmount": 3074,
+                                                    "baseFareCurrency": "BDT",
+                                                    "equivalentAmount": 3074,
+                                                    "equivalentCurrency": "BDT",
+                                                    "constructionAmount": 3074,
+                                                    "constructionCurrency": "BDT",
+                                                    "commissionPercentage": 0,
+                                                    "commissionAmount": 0,
+                                                    "exchangeRateOne": 99.15
+                                                },
+                                                "baggageInformation": [
+                                                    {
+                                                        "provisionType": "A",
+                                                        "airlineCode": "BS",
+                                                        "segments": [
+                                                            {
+                                                                "id": 0
+                                                            }
+                                                        ],
+                                                        "allowance": {
+                                                            "ref": 2
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "totalFare": {
+                                        "totalPrice": 3799,
+                                        "totalTaxAmount": 725,
+                                        "currency": "BDT",
+                                        "baseFareAmount": 3074,
+                                        "baseFareCurrency": "BDT",
+                                        "constructionAmount": 3074,
+                                        "constructionCurrency": "BDT",
+                                        "equivalentAmount": 3074,
+                                        "equivalentCurrency": "BDT"
+                                    }
+                                }
+                            }
+                        ],
+                        "diversitySwapper": {
+                            "weighedPrice": 2051.46
+                        }
+                    },
+                    {
+                        "id": 4,
+                        "pricingSource": "ADVJR1",
+                        "legs": [
+                            {
+                                "ref": 1
+                            }
+                        ],
+                        "pricingInformation": [
+                            {
+                                "pricingSubsource": "MIP",
+                                "fare": {
+                                    "validatingCarrierCode": "BG",
+                                    "vita": true,
+                                    "eTicketable": true,
+                                    "lastTicketDate": "2022-12-12",
+                                    "lastTicketTime": "22:40",
+                                    "governingCarriers": "BG",
+                                    "passengerInfoList": [
+                                        {
+                                            "passengerInfo": {
+                                                "passengerType": "ADT",
+                                                "passengerNumber": 1,
+                                                "nonRefundable": false,
+                                                "fareComponents": [
+                                                    {
+                                                        "ref": 4,
+                                                        "beginAirport": "DAC",
+                                                        "endAirport": "ZYL",
+                                                        "segments": [
+                                                            {
+                                                                "segment": {
+                                                                    "bookingCode": "O",
+                                                                    "cabinCode": "Y",
+                                                                    "mealCode": "S",
+                                                                    "seatsAvailable": 1,
+                                                                    "availabilityBreak": true,
+                                                                    "fareBreakPoint": true
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "taxes": [
+                                                    {
+                                                        "ref": 3
+                                                    },
+                                                    {
+                                                        "ref": 5
+                                                    },
+                                                    {
+                                                        "ref": 4
+                                                    },
+                                                    {
+                                                        "ref": 1
+                                                    },
+                                                    {
+                                                        "ref": 2
+                                                    }
+                                                ],
+                                                "taxSummaries": [
+                                                    {
+                                                        "ref": 3
+                                                    },
+                                                    {
+                                                        "ref": 4
+                                                    },
+                                                    {
+                                                        "ref": 5
+                                                    },
+                                                    {
+                                                        "ref": 1
+                                                    },
+                                                    {
+                                                        "ref": 2
+                                                    }
+                                                ],
+                                                "currencyConversion": {
+                                                    "from": "BDT",
+                                                    "to": "BDT",
+                                                    "exchangeRateUsed": 1
+                                                },
+                                                "fareMessages": [
+                                                    {
+                                                        "type": "N",
+                                                        "code": "0",
+                                                        "carrier": "BG",
+                                                        "info": "REPORTING 2 HRS B4 FLT DEP"
+                                                    },
+                                                    {
+                                                        "type": "W",
+                                                        "code": "0",
+                                                        "info": "PRIVATE FARE APPLIED - CHECK RULES FOR CORRECT TICKETING"
+                                                    },
+                                                    {
+                                                        "type": "W",
+                                                        "code": "0",
+                                                        "info": "VALIDATING CARRIER - BG"
+                                                    }
+                                                ],
+                                                "passengerTotalFare": {
+                                                    "totalFare": 4100,
+                                                    "totalTaxAmount": 725,
+                                                    "currency": "BDT",
+                                                    "baseFareAmount": 3375,
+                                                    "baseFareCurrency": "BDT",
+                                                    "equivalentAmount": 3375,
+                                                    "equivalentCurrency": "BDT",
+                                                    "constructionAmount": 3375,
+                                                    "constructionCurrency": "BDT",
+                                                    "commissionPercentage": 0,
+                                                    "commissionAmount": 0,
+                                                    "exchangeRateOne": 99.15
+                                                },
+                                                "baggageInformation": [
+                                                    {
+                                                        "provisionType": "A",
+                                                        "airlineCode": "BG",
+                                                        "segments": [
+                                                            {
+                                                                "id": 0
+                                                            }
+                                                        ],
+                                                        "allowance": {
+                                                            "ref": 1
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "totalFare": {
+                                        "totalPrice": 4100,
+                                        "totalTaxAmount": 725,
+                                        "currency": "BDT",
+                                        "baseFareAmount": 3375,
+                                        "baseFareCurrency": "BDT",
+                                        "constructionAmount": 3375,
+                                        "constructionCurrency": "BDT",
+                                        "equivalentAmount": 3375,
+                                        "equivalentCurrency": "BDT"
+                                    }
+                                }
+                            }
+                        ],
+                        "diversitySwapper": {
+                            "weighedPrice": 3130.909
+                        }
+                    },
+                    {
+                        "id": 5,
+                        "pricingSource": "ADVJR1",
+                        "legs": [
+                            {
+                                "ref": 7
+                            }
+                        ],
+                        "pricingInformation": [
+                            {
+                                "pricingSubsource": "MIP",
+                                "fare": {
+                                    "validatingCarrierCode": "BS",
+                                    "vita": true,
+                                    "eTicketable": true,
+                                    "lastTicketDate": "2022-12-12",
+                                    "lastTicketTime": "16:40",
+                                    "governingCarriers": "BS",
+                                    "passengerInfoList": [
+                                        {
+                                            "passengerInfo": {
+                                                "passengerType": "ADT",
+                                                "passengerNumber": 1,
+                                                "nonRefundable": false,
+                                                "fareComponents": [
+                                                    {
+                                                        "ref": 5,
+                                                        "beginAirport": "DAC",
+                                                        "endAirport": "ZYL",
+                                                        "segments": [
+                                                            {
+                                                                "segment": {
+                                                                    "bookingCode": "T",
+                                                                    "cabinCode": "Y",
+                                                                    "seatsAvailable": 1,
+                                                                    "availabilityBreak": true,
+                                                                    "fareBreakPoint": true
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "taxes": [
+                                                    {
+                                                        "ref": 3
+                                                    },
+                                                    {
+                                                        "ref": 5
+                                                    },
+                                                    {
+                                                        "ref": 4
+                                                    },
+                                                    {
+                                                        "ref": 1
+                                                    },
+                                                    {
+                                                        "ref": 2
+                                                    }
+                                                ],
+                                                "taxSummaries": [
+                                                    {
+                                                        "ref": 3
+                                                    },
+                                                    {
+                                                        "ref": 4
+                                                    },
+                                                    {
+                                                        "ref": 5
+                                                    },
+                                                    {
+                                                        "ref": 1
+                                                    },
+                                                    {
+                                                        "ref": 2
+                                                    }
+                                                ],
+                                                "currencyConversion": {
+                                                    "from": "BDT",
+                                                    "to": "BDT",
+                                                    "exchangeRateUsed": 1
+                                                },
+                                                "fareMessages": [
+                                                    {
+                                                        "type": "N",
+                                                        "code": "0",
+                                                        "carrier": "BS",
+                                                        "info": "NON-ENDORSABLE/REFUND/MODIFICATION SUBJECT TO/PENALTIES"
+                                                    },
+                                                    {
+                                                        "type": "W",
+                                                        "code": "0",
+                                                        "info": "VALIDATING CARRIER - BS"
+                                                    }
+                                                ],
+                                                "passengerTotalFare": {
+                                                    "totalFare": 4499,
+                                                    "totalTaxAmount": 725,
+                                                    "currency": "BDT",
+                                                    "baseFareAmount": 3774,
+                                                    "baseFareCurrency": "BDT",
+                                                    "equivalentAmount": 3774,
+                                                    "equivalentCurrency": "BDT",
+                                                    "constructionAmount": 3774,
+                                                    "constructionCurrency": "BDT",
+                                                    "commissionPercentage": 0,
+                                                    "commissionAmount": 0,
+                                                    "exchangeRateOne": 99.15
+                                                },
+                                                "baggageInformation": [
+                                                    {
+                                                        "provisionType": "A",
+                                                        "airlineCode": "BS",
+                                                        "segments": [
+                                                            {
+                                                                "id": 0
+                                                            }
+                                                        ],
+                                                        "allowance": {
+                                                            "ref": 2
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "totalFare": {
+                                        "totalPrice": 4499,
+                                        "totalTaxAmount": 725,
+                                        "currency": "BDT",
+                                        "baseFareAmount": 3774,
+                                        "baseFareCurrency": "BDT",
+                                        "constructionAmount": 3774,
+                                        "constructionCurrency": "BDT",
+                                        "equivalentAmount": 3774,
+                                        "equivalentCurrency": "BDT"
+                                    }
+                                }
+                            }
+                        ],
+                        "diversitySwapper": {
+                            "weighedPrice": 3104.31
+                        }
+                    },
+                    {
+                        "id": 6,
+                        "pricingSource": "ADVJR1",
+                        "legs": [
+                            {
+                                "ref": 3
+                            }
+                        ],
+                        "pricingInformation": [
+                            {
+                                "pricingSubsource": "MIP",
+                                "fare": {
+                                    "validatingCarrierCode": "BS",
+                                    "vita": true,
+                                    "eTicketable": true,
+                                    "lastTicketDate": "2022-12-12",
+                                    "lastTicketTime": "16:40",
+                                    "governingCarriers": "BS",
+                                    "passengerInfoList": [
+                                        {
+                                            "passengerInfo": {
+                                                "passengerType": "ADT",
+                                                "passengerNumber": 1,
+                                                "nonRefundable": false,
+                                                "fareComponents": [
+                                                    {
+                                                        "ref": 5,
+                                                        "beginAirport": "DAC",
+                                                        "endAirport": "ZYL",
+                                                        "segments": [
+                                                            {
+                                                                "segment": {
+                                                                    "bookingCode": "T",
+                                                                    "cabinCode": "Y",
+                                                                    "seatsAvailable": 2,
+                                                                    "availabilityBreak": true,
+                                                                    "fareBreakPoint": true
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "taxes": [
+                                                    {
+                                                        "ref": 3
+                                                    },
+                                                    {
+                                                        "ref": 5
+                                                    },
+                                                    {
+                                                        "ref": 4
+                                                    },
+                                                    {
+                                                        "ref": 1
+                                                    },
+                                                    {
+                                                        "ref": 2
+                                                    }
+                                                ],
+                                                "taxSummaries": [
+                                                    {
+                                                        "ref": 3
+                                                    },
+                                                    {
+                                                        "ref": 4
+                                                    },
+                                                    {
+                                                        "ref": 5
+                                                    },
+                                                    {
+                                                        "ref": 1
+                                                    },
+                                                    {
+                                                        "ref": 2
+                                                    }
+                                                ],
+                                                "currencyConversion": {
+                                                    "from": "BDT",
+                                                    "to": "BDT",
+                                                    "exchangeRateUsed": 1
+                                                },
+                                                "fareMessages": [
+                                                    {
+                                                        "type": "N",
+                                                        "code": "0",
+                                                        "carrier": "BS",
+                                                        "info": "NON-ENDORSABLE/REFUND/MODIFICATION SUBJECT TO/PENALTIES"
+                                                    },
+                                                    {
+                                                        "type": "W",
+                                                        "code": "0",
+                                                        "info": "VALIDATING CARRIER - BS"
+                                                    }
+                                                ],
+                                                "passengerTotalFare": {
+                                                    "totalFare": 4499,
+                                                    "totalTaxAmount": 725,
+                                                    "currency": "BDT",
+                                                    "baseFareAmount": 3774,
+                                                    "baseFareCurrency": "BDT",
+                                                    "equivalentAmount": 3774,
+                                                    "equivalentCurrency": "BDT",
+                                                    "constructionAmount": 3774,
+                                                    "constructionCurrency": "BDT",
+                                                    "commissionPercentage": 0,
+                                                    "commissionAmount": 0,
+                                                    "exchangeRateOne": 99.15
+                                                },
+                                                "baggageInformation": [
+                                                    {
+                                                        "provisionType": "A",
+                                                        "airlineCode": "BS",
+                                                        "segments": [
+                                                            {
+                                                                "id": 0
+                                                            }
+                                                        ],
+                                                        "allowance": {
+                                                            "ref": 2
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "totalFare": {
+                                        "totalPrice": 4499,
+                                        "totalTaxAmount": 725,
+                                        "currency": "BDT",
+                                        "baseFareAmount": 3774,
+                                        "baseFareCurrency": "BDT",
+                                        "constructionAmount": 3774,
+                                        "constructionCurrency": "BDT",
+                                        "equivalentAmount": 3774,
+                                        "equivalentCurrency": "BDT"
+                                    }
+                                }
+                            }
+                        ],
+                        "diversitySwapper": {
+                            "weighedPrice": 3104.31
+                        }
+                    },
+                    {
+                        "id": 7,
+                        "pricingSource": "ADVJR1",
+                        "legs": [
+                            {
+                                "ref": 2
+                            }
+                        ],
+                        "pricingInformation": [
+                            {
+                                "pricingSubsource": "MIP",
+                                "fare": {
+                                    "validatingCarrierCode": "BG",
+                                    "vita": true,
+                                    "eTicketable": true,
+                                    "lastTicketDate": "2022-12-12",
+                                    "lastTicketTime": "22:40",
+                                    "governingCarriers": "BG",
+                                    "passengerInfoList": [
+                                        {
+                                            "passengerInfo": {
+                                                "passengerType": "ADT",
+                                                "passengerNumber": 1,
+                                                "nonRefundable": false,
+                                                "fareComponents": [
+                                                    {
+                                                        "ref": 1,
+                                                        "beginAirport": "DAC",
+                                                        "endAirport": "ZYL",
+                                                        "segments": [
+                                                            {
+                                                                "segment": {
+                                                                    "bookingCode": "Y",
+                                                                    "cabinCode": "Y",
+                                                                    "mealCode": "S",
+                                                                    "seatsAvailable": 9,
+                                                                    "availabilityBreak": true,
+                                                                    "fareBreakPoint": true
+                                                                }
+                                                            }
+                                                        ]
+                                                    }
+                                                ],
+                                                "taxes": [
+                                                    {
+                                                        "ref": 3
+                                                    },
+                                                    {
+                                                        "ref": 5
+                                                    },
+                                                    {
+                                                        "ref": 4
+                                                    },
+                                                    {
+                                                        "ref": 1
+                                                    },
+                                                    {
+                                                        "ref": 2
+                                                    }
+                                                ],
+                                                "taxSummaries": [
+                                                    {
+                                                        "ref": 3
+                                                    },
+                                                    {
+                                                        "ref": 4
+                                                    },
+                                                    {
+                                                        "ref": 5
+                                                    },
+                                                    {
+                                                        "ref": 1
+                                                    },
+                                                    {
+                                                        "ref": 2
+                                                    }
+                                                ],
+                                                "currencyConversion": {
+                                                    "from": "BDT",
+                                                    "to": "BDT",
+                                                    "exchangeRateUsed": 1
+                                                },
+                                                "fareMessages": [
+                                                    {
+                                                        "type": "N",
+                                                        "code": "0",
+                                                        "carrier": "BG",
+                                                        "info": "REPORTING 2 HRS B4 FLT DEP"
+                                                    },
+                                                    {
+                                                        "type": "W",
+                                                        "code": "0",
+                                                        "info": "PRIVATE FARE APPLIED - CHECK RULES FOR CORRECT TICKETING"
+                                                    },
+                                                    {
+                                                        "type": "W",
+                                                        "code": "0",
+                                                        "info": "VALIDATING CARRIER - BG"
+                                                    }
+                                                ],
+                                                "passengerTotalFare": {
+                                                    "totalFare": 6000,
+                                                    "totalTaxAmount": 725,
+                                                    "currency": "BDT",
+                                                    "baseFareAmount": 5275,
+                                                    "baseFareCurrency": "BDT",
+                                                    "equivalentAmount": 5275,
+                                                    "equivalentCurrency": "BDT",
+                                                    "constructionAmount": 5275,
+                                                    "constructionCurrency": "BDT",
+                                                    "commissionPercentage": 0,
+                                                    "commissionAmount": 0,
+                                                    "exchangeRateOne": 99.15
+                                                },
+                                                "baggageInformation": [
+                                                    {
+                                                        "provisionType": "A",
+                                                        "airlineCode": "BG",
+                                                        "segments": [
+                                                            {
+                                                                "id": 0
+                                                            }
+                                                        ],
+                                                        "allowance": {
+                                                            "ref": 1
+                                                        }
+                                                    }
+                                                ]
+                                            }
+                                        }
+                                    ],
+                                    "totalFare": {
+                                        "totalPrice": 6000,
+                                        "totalTaxAmount": 725,
+                                        "currency": "BDT",
+                                        "baseFareAmount": 5275,
+                                        "baseFareCurrency": "BDT",
+                                        "constructionAmount": 5275,
+                                        "constructionCurrency": "BDT",
+                                        "equivalentAmount": 5275,
+                                        "equivalentCurrency": "BDT"
+                                    }
+                                }
+                            }
+                        ],
+                        "diversitySwapper": {
+                            "weighedPrice": 2700
+                        }
+                    }
+                ]
+            }
+        ]
+    }
+}

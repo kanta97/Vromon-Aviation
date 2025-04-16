@@ -1,0 +1,24 @@
+<div class="container-fluid mt-4" ng-controller="dashboardController">
+  <div class="row" ng-if="dashLoading==1;">
+    <div class="col-md-12 text-center">
+      <img class="mb-3" height="60px;" src="assets/loading.gif" />
+    </div>
+  </div>
+  <div class="row text-center mb-4" ng-if="dashLoading==0;">
+    <div class="col-md-12">
+      <h5>Welcome, {{sessionInfo.sessionInfo.name}}</h5>
+    </div>
+  </div>
+  <div class="row" ng-if="dashLoading==0;">
+    <div class="col-md-12 d-flex justify-content-center">
+      <div class="bg-success p-3 text-center rounded w-25">
+        <h5 class="text-white">Total Room: {{dashboardData[0][0].total}}</h5>
+      </div>
+    </div>
+    <!-- <div class="col-md-6">
+            <div class="bg-success p-3 text-center rounded">
+                <h5 class="text-white">Total Bookings: {{dashboardData[0][1].total}}</h5>
+            </div>
+        </div> -->
+  </div>
+</div>

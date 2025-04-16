@@ -1,0 +1,104 @@
+<div
+  class="container-fluid availabilities_page mt-4"
+  ng-controller="availabilityController"
+>
+  <div class="row mt-2">
+    <div class="col-md-3">
+      <input class="form-alternet12 text-center" type="text" name="daterange" />
+    </div>
+    <!-- <div class="col-md-2">
+      <button class="btn btn-success">
+        Show
+      </button>
+    </div> -->
+  </div>
+  <div class="row mt-2">
+    <div class="col-md-12">
+      <div
+        class="table-responsive stickyTable"
+        style="height: 79vh; overflow-y: scroll"
+      >
+        <table class="table">
+          <tbody ng-repeat="room in allData">
+            <tr
+              class="rounded"
+              style="background-color: #e8dff7; color: #343a40"
+            >
+              <td class="d-none"></td>
+              <td colspan="{{dateArray.length+1}}">
+                <span
+                  class="position-sticky"
+                  style="overflow: hidden; left: 11px"
+                  >Room {{$index+1}}: {{room.roomName}}</span
+                >
+                <span
+                  class="position-sticky"
+                  style="overflow: hidden; left: 50%"
+                >
+                  <button
+                    ng-click="handleCalendarData(room.id, $index, room.editable)"
+                    class="btn btn-{{room.editable?'warning':'success'}}"
+                  >
+                    {{room.editable?'Edit':'Save'}}
+                  </button>
+                </span>
+              </td>
+            </tr>
+            <tr>
+              <td class="text-nowrap cls"></td>
+              <td ng-repeat="date in room.availabilityData">
+                <input
+                ng-disabled="true"
+                name="date"
+                class="form-alternet12 date"
+                type="text"
+                ng-model="date.date | date:'yyyy-MM-dd'"
+                placeholder=" date"
+              />
+              </td>
+            </tr>
+            <tr>
+              <td class="text-nowrap cls">Available Room</td>
+              <td ng-repeat="date in room.availabilityData">
+                <input
+                  ng-disabled="room.editable"
+                  id="AvailableRoom"
+                  class="form-alternet AvailableRoom"
+                  type="number"
+                  ng-model="date.availableRoom"
+                  placeholder="Available Room"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td class="text-nowrap cls">Room Sold</td>
+              <td ng-repeat="date in room.availabilityData">
+                <input
+                  ng-disabled="true"
+                  id="roomSold"
+                  class="form-alternet"
+                  type="number"
+                  ng-model="date.soldRoom"
+                  placeholder="Room Sold"
+                />
+              </td>
+            </tr>
+            <tr>
+              <td class="text-nowrap cls">Price (BDT)</td>
+              <td ng-repeat="date in room.availabilityData track by $index">
+                <input
+                  ng-disabled="room.editable"
+                  id="price"
+                  class="form-alternet price"
+                  type="number"
+                  ng-model="date.price"
+                  placeholder="Price"
+                />
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
