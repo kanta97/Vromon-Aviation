@@ -50,11 +50,11 @@ function MyApp({ Component, pageProps }) {
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify({
           "@context": "http://www.schema.org",
           "@type": "TravelAgency",
-          "name": "Navigator Tourism",
+          "name": "Vromon Aviation",
           "url": "https://navigatortourism.com/",
           "logo": "https://navigatortourism.com/logo.jpg",
           "image": "https://navigatortourism.com/image.jpg",
-          "description": "As Navigator Tourism, we are the best travel company in Bangladesh, specializing in corporate trips worldwide. Our comprehensive services include top-tier air ticket bookings, exceptional hotel accommodations, proficient visa processing, and tailor-made holiday packages. Whether for business or leisure, our expertise ensures unparalleled travel experiences.",
+          "description": "As Vromon Aviation, we are the best travel company in Bangladesh, specializing in corporate trips worldwide. Our comprehensive services include top-tier air ticket bookings, exceptional hotel accommodations, proficient visa processing, and tailor-made holiday packages. Whether for business or leisure, our expertise ensures unparalleled travel experiences.",
           "address": {
             "@type": "PostalAddress",
             "streetAddress": "Plot: 10, Flat: C3, Bashati Avenue, Road:53 Gulshan Ave",

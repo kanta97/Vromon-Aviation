@@ -65,19 +65,19 @@ exports.get_offers = function (req, res) {
         // },
 	{
              title: `Direct Flight`,
-            imgUrl: '/airasia32k.jpg',
+            imgUrl: '/2000tk CXB Discount.jpg',
 			description: 'Dhaka-Bangkok Round-Way Only BDT. 32000',
 		type: 'flight'
         },
 	{
              title: `Any International Flight`,
-            imgUrl: '/citybank10p.jpg',
+            imgUrl: '/ttttt.png',
 			description: 'Enjoy Flat 10% Discount With City Bank',
 		type: 'flight'
         },
 	{
              title: `On Domestic Flight`,
-            imgUrl: '/cox2k.jpg',
+            imgUrl: '/Tha Pkg 44K.png',
 			description: `Enjoy Flat 2000 Tk Discount`,
 		type: 'flight'
         },
@@ -108,19 +108,19 @@ exports.get_offers = function (req, res) {
     //     },
 	{
              title: `Direct Flight`,
-            imgUrl: '/airasia32k.jpg',
+            imgUrl: '/2000tk CXB Discount.jpg',
 			description: 'Dhaka-Bangkok Round-Way Only BDT. 32000',
 		type: 'flight'
         },
 	{
              title: `Any International Flight`,
-            imgUrl: '/citybank10p.jpg',
+            imgUrl: '/ttttt.png',
 			description: 'Enjoy Flat 10% Discount With City Bank',
 		type: 'flight'
         },
 	{
              title: `On Domestic Flight`,
-            imgUrl: '/cox2k.jpg',
+            imgUrl: '/Tha Pkg 44K.png',
 			description: `Enjoy Flat 2000 Tk Discount`,
 		type: 'flight'
         },

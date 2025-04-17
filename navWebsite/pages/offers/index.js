@@ -32,7 +32,7 @@ const offers = () => {
       <h3 className="">Offers</h3>
 
       <ul className={`nav nav-tabs ${styles.campain_page} mt-3 mb-5`} id="myTab" role="tablist">
-        {['flight', 'hotel', 'package'].map((type) => (
+        {['flight'].map((type) => (
           <li className="nav-item" role="presentation" key={type}>
             <button
               className={`nav-link ${styles.link_camp} ${currentSearch === type ? "active" : ""}`}
@@ -72,7 +72,7 @@ const offers = () => {
                     <p className={styles.camapin_text}>{item.title}</p>
                     <p className={styles.camapin_text2} dangerouslySetInnerHTML={{ __html: item.content }} />
                     <span className={` ${styles.campain_btn}`}>
-                      Explore <img className="img-fluid ms-2" width={10} src="../assets/icons/arrow_right.svg" />
+                      Explore 
                     </span>
                   </div>
                 </div>

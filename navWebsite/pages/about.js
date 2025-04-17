@@ -16,7 +16,7 @@ const about = () => {
                     </div>
                     <br />
                     <p className="about-detail">
-                        Navigator Tourism is leading the tourism industry in Bangladesh since 2015. Be it your domestic or international trip, we are there to bring the most out of your experience.
+                    Vromon Aviation is leading the tourism industry in Bangladesh since 2015. Be it your domestic or international trip, we are there to bring the most out of your experience.
                     </p>
                     <p className="about-detail">
                         From door-to-door service to fun holiday trips, we are changing tourism in Bangladesh. And we never compromise the quality of service so we can deliver the most satisfactory experience.

@@ -24,7 +24,7 @@ export default function Layout({ title, keywords, description, children }) {
 }
 
 Layout.defaultProps = {
-    title: 'Best Travel Agency in Bangladesh | Navigator Tourism',
-    description: 'Best online travel agency in Bangladesh. Get your air tickets, visa, hotels, Holiday packages with Navigator Tourism at affordable price and hassle-free.',
+    title: 'Best Travel Agency in Bangladesh | Vromon Aviation',
+    description: 'Best online travel agency in Bangladesh. Get your air tickets, visa, hotels, Holiday packages with Vromon Aviation at affordable price and hassle-free.',
     keywords: 'best travel company in bangladesh, tour agency in bangladesh, bangladesh tour agency, travel agency bd, tour agency in bangladesh, bangladesh travel agency, travel agency, a travel agency'
 }

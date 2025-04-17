@@ -1,6 +1,6 @@
 export const API_AUTH_URL = process.env.API_AUTH_URL || 'https://navigatortourism.com:8085' //dev http://194.233.86.214:8085 //prod https://navigatortourism.com:8085 //local http://localhost:8085
 
-export const API_AIR_URL = process.env.API_AIR_URL || 'https://navigatortourism.com:3005' //dev http://194.233.86.214:3005 //prod https://navigatortourism.com:3005 //local http://localhost:3005
+export const API_AIR_URL = process.env.API_AIR_URL || 'http://localhost:3005' //dev http://194.233.86.214:3005 //prod https://navigatortourism.com:3005 //local http://localhost:3005
 
 export const API_TRIP_URL = process.env.API_TRIP_URL || 'https://navigatortourism.com:3000 ' //dev http://194.233.86.214:3000 //prod https://navigatortourism.com:3000 //local http://localhost:3000
 

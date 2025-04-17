@@ -97,24 +97,45 @@ export default function Showcase() {
         destination,
         selectedOption
     } = useContext(HotelContext)
-    // const hardcodedImages = [
-    //     "assets/img/11.jpg",
-    //     "assets/img/22.jpg",
-    //     "assets/img/33.jpg",
-    //     "assets/img/44.jpg",
-    //     "assets/img/55.jpg",
-    //     "assets/img/66.jpg",
-    //     "assets/img/77.jpg",
-    //     "assets/img/88.jpg",
-    //     "assets/img/99.jpg",
-    //     // Add more image paths as needed
-    //   ];
-    //   const updatedPackages = Array.isArray(featuredPackages)
-    //   ? featuredPackages.map((pack, index) => ({
-    //       ...pack,
-    //       image: hardcodedImages[index % hardcodedImages.length], // Assign images cyclically
-    //     }))
-    //   : [];
+    const hardcodedPackages = [
+        {
+          id: 1,
+          name: "Explore the True Beauty of Singapore and Malaysia in 5 Days",
+          price: 150000,
+          validTo: "2099-12-31",
+          image: "/assets/img/11.jpg",
+        },
+        {
+          id: 2,
+          name: "Best Malaysia Tour Package From Bangladesh: Explore Kuala Lumpur in 4 Days",
+          price: 18000,
+          validTo: "2099-12-31",
+          image: "/assets/img/55.jpg",
+        },
+        {
+          id: 3,
+          name: "Explore the True Beauty of Singapore and Malaysia in 5 Days",
+          price: 25000,
+          validTo: "2099-12-31",
+          image: "/assets/img/33.jpg",
+        },
+        {
+          id: 4,
+          name: "Explore Langkawi and Kuala Lumpur in 4 Days",
+          price: 3500,
+          validTo: "2099-12-31",
+          image: "/assets/img/44.jpg",
+        },
+       
+        // Add more as needed
+      ];
+      
+      const updatedPackages = Array.isArray(featuredPackages)
+      ? featuredPackages.map((pack, index) => ({
+          ...pack,
+          image: hardcodedImages[index % hardcodedImages.length], // Assign images cyclically
+        }))
+      : [];
     //console.log(' hotelSugg print', hotelSugg)
     // console.log(' hotelData print', hotelData)
 
@@ -641,11 +662,11 @@ const handleShowcaseClick = () => {
                 </div> */}
             </section>
 
-            {featuredPackages && featuredPackages.length > 0 && featuredPackages.filter(pack => new Date() < new Date(pack.validTo)).length > 0 && (
+            {/* {featuredPackages && featuredPackages.length > 0 && featuredPackages.filter(pack => new Date() < new Date(pack.validTo)).length > 0 && ( */}
     <section className={style.package_section}>
         <div className="container">
             <div className="row">
-                <h2 className="mb-4">
+                <h2 className="mb-4 mt-5">
                     Packages in Popular Destinations
                 </h2>
             </div>
@@ -695,44 +716,46 @@ const handleShowcaseClick = () => {
     />
 </div>  */}
  <div className="col-12">
- {/* <Carousel
+ <Carousel
   autoPlay
   autoPlaySpeed={3000}
-//   infinite
   swipeable={true}
-  draggable={false}
+  draggable={true}
   transitionDuration={400}
   responsive={responsive}
   showDots
   containerClass="carousel-container"
   itemClass="carousel-item-padding-40-px"
 >
-  {updatedPackages
-    .filter((pack) => new Date() < new Date(pack.validTo)) // Keep valid packages
+  {hardcodedPackages
+    .filter((pack) => new Date() < new Date(pack.validTo)) // Keep valid ones
     .sort((a, b) => a.price - b.price) // Sort by price
-    .slice(0, 8) // Show only the first 5
+    .slice(0, 8) // Limit to 8
     .map((pack) => (
       <div className={style.package_container} key={pack.id}>
-        <Link href={`/package/${pack.id}`} className={style.package_link}>
+        <Link href="#" className={style.package_link}>
           <div className={style.package_card}>
-          
             <img
               className={style.package_img}
               src={pack.image}
               alt={`Package ${pack.name}`}
             />
-                 <div className={style.package_info}>
-                    <h5 className={style.package_country}>{pack.name}</h5>
-                    <div className={style.package_balance}>
-                      <span ><FontAwesomeIcon icon={faBangladeshiTakaSign} /> </span> {pack.price.toLocaleString()}
-                    </div>
-                  </div>
-                </div>
-              </Link>
+            <div className={style.package_info}>
+              <h5 className={style.package_country}>{pack.name}</h5>
+              <div className={style.package_balance}>
+                <span>
+                  <FontAwesomeIcon icon={faBangladeshiTakaSign} />
+                </span>{" "}
+                {pack.price.toLocaleString()}
+              </div>
+            </div>
+          </div>
+        </Link>
       </div>
     ))}
-</Carousel> */}
-<Carousel
+</Carousel>
+
+{/* <Carousel
        autoPlay
        autoPlaySpeed={3000}
        infinite
@@ -769,14 +792,14 @@ const handleShowcaseClick = () => {
               </Link>
             </div>
           ))}
-      </Carousel>
+      </Carousel> */}
     </div>
 
     </div>
             </div>
      
     </section>
-)}
+{/* )} */}
 
 
 
@@ -810,7 +833,7 @@ const handleShowcaseClick = () => {
                             <div className='card wht_card p-3 h-100'>
                                 <div className='icon_wht mb-3'>
                                     <img
-                                        src="assets/icons/smooth_visa_processing.svg"
+                                        src="assets/icons/amazing_flight_deals.svg"
                                         className="img-fluid"
                                     />
                                 </div>
@@ -826,7 +849,7 @@ const handleShowcaseClick = () => {
                             <div className='card wht_card p-3 h-100'>
                                 <div className='icon_wht mb-3'>
                                     <img
-                                        src="assets/icons/exciting_tour_packages.svg"
+                                        src="assets/icons/amazing_flight_deals.svg"
                                         className="img-fluid"
                                     />
                                 </div>
@@ -842,7 +865,7 @@ const handleShowcaseClick = () => {
                             <div className='card wht_card p-3 h-100'>
                                 <div className='icon_wht mb-3'>
                                     <img
-                                        src="assets/icons/hassle_free_hotel_booking.svg"
+                                        src="assets/icons/amazing_flight_deals.svg"
                                         className="img-fluid"
                                     />
                                 </div>
